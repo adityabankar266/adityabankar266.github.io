@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stock accuracy Case Study | Aditya Bankar</title>
+<meta name="description" content="Requirements for a Warehouse Execution System redesign with real-time SAP sync, cutting manual stock reconciliation by about 30%.">
+<meta property="og:title" content="Stock accuracy Case Study | Aditya Bankar">
+<meta property="og:description" content="Requirements for a Warehouse Execution System redesign with real-time SAP sync, cutting manual stock reconciliation by about 30%.">
+<meta property="og:image" content="aditya.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* Layout concept: a quiet consulting dossier. Editorial serif headlines, sober sans body,
+   mono document codes, one blue taken from the portrait's tie, green only for outcomes. */
+:root {
+  --bg: #f6f7f9; --surface: #ffffff; --ink: #0f1a2e; --ink-2: #3a4459; --muted: #5a6479; --ink-3: #8a93a8; --line: #e1e5ed;
+  --accent: #1f4aa8; --accent-soft: #e9eefb; --on-accent: #ffffff;
+  --stamp: #127542; --stamp-soft: #e3f2e9; --warn: #b03b25; --warn-soft: #fbeae5;
+  --lane-a: #f8f9fb; --lane-b: #f2f4f8; --lane-head: #e7ebf3; --gw-fill: #eef2fc;
+  --shadow: 0 1px 2px rgba(15, 26, 46, .05), 0 8px 24px rgba(15, 26, 46, .06);
+  --display: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1320; --surface: #151d2d; --ink: #e8ecf4; --ink-2: #c3cad8; --muted: #9aa5bc; --ink-3: #5f6b86; --line: #263049;
+    --accent: #8fb0fb; --accent-soft: #1b2744; --on-accent: #0d1320;
+    --stamp: #6fd194; --stamp-soft: #13291c; --warn: #f09f8a; --warn-soft: #311d18;
+    --lane-a: #131b2a; --lane-b: #172031; --lane-head: #1f2a40; --gw-fill: #1b2744;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1320; --surface: #151d2d; --ink: #e8ecf4; --ink-2: #c3cad8; --muted: #9aa5bc; --ink-3: #5f6b86; --line: #263049;
+  --accent: #8fb0fb; --accent-soft: #1b2744; --on-accent: #0d1320;
+  --stamp: #6fd194; --stamp-soft: #13291c; --warn: #f09f8a; --warn-soft: #311d18;
+  --lane-a: #131b2a; --lane-b: #172031; --lane-head: #1f2a40; --gw-fill: #1b2744;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; line-height: 1.12; letter-spacing: -0.015em; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; }
+.narrow { max-width: 860px; }
+.code { font-family: var(--mono); font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+nav.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid var(--line); }
+nav.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 60px; }
+.brand { font-family: var(--display); font-size: 21px; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.navlinks { display: flex; align-items: center; gap: 20px; }
+.navlinks a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+.navlinks a:hover { color: var(--ink); }
+.navlinks a.cv { color: var(--ink); border: 1px solid var(--line); background: var(--surface); padding: 6px 12px; border-radius: 999px; }
+.theme-btn { background: var(--surface); border: 1px solid var(--line); color: var(--ink); border-radius: 999px; width: 36px; height: 36px; cursor: pointer; font-size: 15px; display: grid; place-items: center; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; font-family: var(--body); transition: transform .15s ease, box-shadow .15s ease; }
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+.btn.primary { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.tags li { font-size: 12px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-2); }
+.stamp { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--stamp); border: 1.5px solid var(--stamp); border-radius: 4px; padding: 2px 7px; }
+footer.site { border-top: 1px solid var(--line); margin-top: 56px; padding-block: 28px 44px; color: var(--muted); font-size: 14px; }
+footer.site .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+@media (max-width: 720px) { .navlinks a.hide-sm { display: none; } .navlinks { gap: 12px; } }
+
+.dg { display: block; font-family: var(--body); max-width: none; }
+.dg-lane-a { fill: var(--lane-a); } .dg-lane-b { fill: var(--lane-b); }
+.dg-head { fill: var(--lane-head); }
+.dg-head-t { fill: var(--ink); font-size: 12.5px; font-weight: 600; letter-spacing: .02em; }
+.dg-sep { stroke: var(--line); stroke-width: 1; }
+.dg-edge { stroke: var(--muted); stroke-width: 1.6; fill: none; }
+.dg-arrow { fill: var(--muted); }
+.dg-elabel { fill: var(--muted); font-size: 11px; font-weight: 600; }
+.dg-task { fill: var(--surface); stroke: var(--ink-3); stroke-width: 1.3; }
+.dg-task.good { stroke: var(--stamp); stroke-width: 1.8; }
+.dg-task.bad { stroke: var(--warn); stroke-width: 1.8; }
+.dg-t { fill: var(--ink); font-size: 12.5px; }
+.dg-t.sm { font-size: 11.5px; } .dg-t.strong { font-weight: 700; }
+.dg-start { fill: var(--surface); stroke: var(--stamp); stroke-width: 2; }
+.dg-end { fill: var(--surface); stroke: var(--ink); stroke-width: 4; }
+.dg-end.good { stroke: var(--stamp); } .dg-end.bad { stroke: var(--warn); }
+.dg-gw { fill: var(--gw-fill); stroke: var(--accent); stroke-width: 1.6; }
+.dg-gw-x { fill: var(--accent); font-size: 15px; font-weight: 700; }
+.dg-badge { stroke: var(--surface); stroke-width: 2; }
+.dg-badge.bad { fill: var(--warn); } .dg-badge.good { fill: var(--stamp); }
+.dg-badge-t { fill: var(--surface); font-size: 11px; font-weight: 700; }
+.diagram { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
+.dg-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.dg-scroll .dg { margin: 0 auto; }
+.dg-hint { display: none; font-size: 12px; color: var(--muted); margin: 0 0 8px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 14px 0 0; padding: 12px 0 0; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend svg { flex: none; }
+.notes { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 6px; }
+.notes li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; font-size: 14px; margin: 0; max-width: none; }
+.notes b { width: 20px; height: 20px; border-radius: 50%; color: var(--surface); font-size: 11px; display: grid; place-items: center; }
+.notes .bad b { background: var(--warn); } .notes .good b { background: var(--stamp); }
+.seg { display: inline-flex; background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 3px; margin-bottom: 14px; }
+.seg button { border: 0; background: none; font: inherit; font-size: 14px; font-weight: 600; color: var(--muted); padding: 7px 16px; border-radius: 999px; cursor: pointer; }
+.seg button[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(15, 26, 46, .12); }
+@media (max-width: 760px) { .dg-hint { display: block; } }
+
+
+.hero { padding-block: 48px 22px; }
+.hero h1 { font-size: clamp(34px, 5.4vw, 52px); margin: 14px 0 16px; }
+.meta { color: var(--muted); margin: 0; font-size: 15px; }
+.byline { display: flex; align-items: center; gap: 12px; margin-top: 18px; font-size: 14px; color: var(--muted); }
+.byline img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+.byline b { color: var(--ink); font-weight: 600; display: block; }
+.metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 28px; }
+.metric { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 14px; }
+.metric b { display: block; font-family: var(--display); font-size: 27px; font-weight: 600; color: var(--ink); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.metric span { font-size: 13px; color: var(--muted); line-height: 1.4; display: block; margin-top: 5px; }
+.metric.win { background: var(--stamp-soft); border-color: transparent; } .metric.win b { color: var(--stamp); }
+article section { padding-block: 30px; border-top: 1px solid var(--line); }
+article h2 { font-size: 30px; margin: 0 0 14px; }
+article p { margin: 0 0 12px; max-width: 68ch; }
+article ul { margin: 6px 0 0; padding-left: 20px; } article li { margin: 6px 0; max-width: 68ch; }
+.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.steps li { display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 12px; margin: 0; max-width: none; }
+.steps .n { font-family: var(--mono); font-size: 13px; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--accent); color: var(--accent); display: grid; place-items: center; }
+.steps strong { display: block; font-weight: 600; }
+.sample { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+.sample h3 { font-size: 21px; margin: 6px 0 8px; }
+.sample .story { font-style: italic; }
+.sample h4 { margin: 10px 0 0; font-size: 14px; }
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 14px; }
+th, td { text-align: left; padding: 10px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+td:first-child { font-weight: 600; }
+table.gap td:last-child, table.change td:last-child { color: var(--stamp); font-weight: 500; }
+table.change td:nth-child(2) { color: var(--warn); }
+.caption { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
+.note { font-size: 13px; color: var(--muted); font-style: italic; margin-top: 18px; }
+.next { display: flex; justify-content: space-between; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; margin-top: 12px; text-decoration: none; color: var(--ink); transition: border-color .2s ease; }
+.next:hover { border-color: var(--accent); }
+.next b { font-family: var(--display); font-weight: 500; font-size: 22px; display: block; line-height: 1.2; }
+@media (max-width: 700px) { .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } article h2 { font-size: 26px; } }
+</style>
+<script>
+(function () {
+  var root = document.documentElement;
+  try { var t = localStorage.getItem('ab-theme'); if (t === 'dark' || t === 'light') root.setAttribute('data-theme', t); } catch (e) {}
+  function isDark() { var t = root.getAttribute('data-theme'); if (t) return t === 'dark'; return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
+  function paint() { var b = document.getElementById('theme-btn'); if (b) { b.textContent = isDark() ? '☀' : '☾'; b.setAttribute('aria-label', isDark() ? 'Switch to light theme' : 'Switch to dark theme'); } }
+  document.addEventListener('DOMContentLoaded', function () {
+    paint();
+    var b = document.getElementById('theme-btn');
+    if (b) b.addEventListener('click', function () { var n = isDark() ? 'light' : 'dark'; root.setAttribute('data-theme', n); try { localStorage.setItem('ab-theme', n); } catch (e) {} paint(); });
+    document.querySelectorAll('[role="tablist"]:not([data-shared])').forEach(function (list) {
+      var tabs = list.querySelectorAll('[role="tab"]');
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          tabs.forEach(function (t) { var on = t === tab; t.setAttribute('aria-selected', on ? 'true' : 'false'); var p = document.getElementById(t.getAttribute('aria-controls')); if (p) p.hidden = !on; });
+        });
+      });
+    });
+  });
+})();
+</script>
+</head>
+<body>
+<nav class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">Aditya Bankar</a>
+    <div class="navlinks">
+      <a href="index.html#work">All work</a>
+      <a class="cv" href="Aditya-Bankar-CV.pdf" target="_blank" rel="noopener">CV</a>
+      <button class="theme-btn" id="theme-btn" type="button" aria-label="Switch theme">☾</button>
+    </div>
+  </div>
+</nav>
+<main class="wrap narrow">
+  <header class="hero">
+    <span class="code">CS-03 · Case study · Retail supply chain · Warehouse Execution System</span>
+    <h1>Keeping warehouse stock and SAP in step</h1>
+    <p class="meta">Sainsbury's · United Kingdom · 2023–25 · Role: IT Business Analyst</p>
+    <div class="byline"><img src="aditya-avatar.jpg" alt="Aditya Bankar" width="40" height="40"><span><b>Aditya Bankar</b>Senior Business Analyst / Product Owner · 3 min read</span></div>
+    <div class="metrics"><div class="metric win"><b>~30%</b><span>Less manual stock reconciliation effort</span></div><div class="metric"><b>~15%</b><span>Fewer stock discrepancies</span></div><div class="metric"><b>Real-time</b><span>Stock sync between WES and SAP</span></div><div class="metric"><b>UK</b><span>Retail supply chain and stores</span></div></div>
+  </header>
+  <article>
+    <section><h2>The context</h2><p>In grocery retail, the stock a system thinks you have and the stock on the shelf drift apart all the time. Every gap means extra counts, manual reconciliation and, in the end, empty shelves or waste.</p><p>At Sainsbury's I worked as an IT Business Analyst across retail supply chain, inventory management and store operations. My focus was the Warehouse Execution System (WES), the software that runs warehouse tasks, and how it shared stock data with SAP.</p></section>
+    <section><h2>The problem</h2><p>Walking the process with store and supply chain teams showed where accuracy was lost:</p><ul><li>Stock figures in the WES and SAP did not always match, so teams could not fully trust either one.</li><li>Mismatches came to light late, often during stock counts.</li><li>Store and supply chain teams spent time reconciling stock by hand.</li><li>Recurring issues were fixed case by case instead of at the root cause.</li></ul></section>
+    <section><h2>My role</h2><ul><li>Ran process walkthroughs and user-journey mapping with store teams to see how workflows ran in practice.</li><li>Gathered and prioritised requirements with supply chain, store operations and IT teams.</li><li>Reviewed inventory and stock-accuracy reports with supply chain teams to trace recurring issues.</li><li>Documented as-is and to-be workflows, user stories and acceptance criteria.</li></ul></section>
+    <section id="process"><h2>The process, before and after</h2>
+      <p>Each column is a team or system. Numbered badges point to where time was lost, or saved.</p>
+      <div class="diagram">
+        <div class="seg" role="tablist" aria-label="Choose view">
+          <button type="button" role="tab" aria-selected="true" aria-controls="dg-before" id="tab-before">Before</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="dg-after" id="tab-after">After</button>
+        </div>
+        <div id="dg-before" role="tabpanel" aria-labelledby="tab-before"><p class="dg-hint">Scroll sideways to see the whole diagram →</p><div class="dg-scroll"><svg class="dg" viewBox="0 0 720 558" width="720" height="558" role="img" aria-label="Stock accuracy before: batch updates and manual reconciliation" xmlns="http://www.w3.org/2000/svg"><title>Stock accuracy before: batch updates and manual reconciliation</title><defs><marker id="cs03b-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrow"/></marker></defs><rect x="0" y="0" width="180" height="558" class="dg-lane-a"/><rect x="0" y="0" width="180" height="40" class="dg-head"/><text x="90" y="24.5" text-anchor="middle" class="dg-head-t">Store / warehouse</text><rect x="180" y="0" width="180" height="558" class="dg-lane-b"/><rect x="180" y="0" width="180" height="40" class="dg-head"/><text x="270" y="24.5" text-anchor="middle" class="dg-head-t">WES</text><line x1="180" y1="0" x2="180" y2="558" class="dg-sep"/><rect x="360" y="0" width="180" height="558" class="dg-lane-a"/><rect x="360" y="0" width="180" height="40" class="dg-head"/><text x="450" y="24.5" text-anchor="middle" class="dg-head-t">SAP</text><line x1="360" y1="0" x2="360" y2="558" class="dg-sep"/><rect x="540" y="0" width="180" height="558" class="dg-lane-b"/><rect x="540" y="0" width="180" height="40" class="dg-head"/><text x="630" y="24.5" text-anchor="middle" class="dg-head-t">Supply chain team</text><line x1="540" y1="0" x2="540" y2="558" class="dg-sep"/><path d="M90,103 V172 H198" class="dg-edge" marker-end="url(#cs03b-arr)"/><path d="M342,172 H450 V232" class="dg-edge" marker-end="url(#cs03b-arr)"/><path d="M378,256 H90 V316" class="dg-edge" marker-end="url(#cs03b-arr)"/><path d="M162,340 H630 V400" class="dg-edge" marker-end="url(#cs03b-arr)"/><path d="M630,448 V493" class="dg-edge" marker-end="url(#cs03b-arr)"/><circle cx="90" cy="88" r="15" class="dg-start"/><text x="114" y="85" class="dg-t sm">Stock</text><text x="114" y="99" class="dg-t sm">moves</text><rect x="198" y="148" width="144" height="48" rx="9" class="dg-task"/><text x="270" y="168.5" text-anchor="middle" class="dg-t">Record movement</text><text x="270" y="183.5" text-anchor="middle" class="dg-t">in WES</text><rect x="378" y="232" width="144" height="48" rx="9" class="dg-task bad"/><text x="450" y="252.5" text-anchor="middle" class="dg-t">Update SAP</text><text x="450" y="267.5" text-anchor="middle" class="dg-t">in batches</text><circle cx="516" cy="234" r="10" class="dg-badge bad"/><text x="516" y="238" text-anchor="middle" class="dg-badge-t">1</text><rect x="18" y="316" width="144" height="48" rx="9" class="dg-task bad"/><text x="90" y="336.5" text-anchor="middle" class="dg-t">Find mismatch</text><text x="90" y="351.5" text-anchor="middle" class="dg-t">during counts</text><circle cx="156" cy="318" r="10" class="dg-badge bad"/><text x="156" y="322" text-anchor="middle" class="dg-badge-t">2</text><rect x="558" y="400" width="144" height="48" rx="9" class="dg-task bad"/><text x="630" y="420.5" text-anchor="middle" class="dg-t">Reconcile</text><text x="630" y="435.5" text-anchor="middle" class="dg-t">by hand</text><circle cx="696" cy="402" r="10" class="dg-badge bad"/><text x="696" y="406" text-anchor="middle" class="dg-badge-t">3</text><circle cx="630" cy="508" r="15" class="dg-end bad"/><text x="654" y="505" class="dg-t sm strong">Fixed,</text><text x="654" y="519" class="dg-t sm strong">days later</text></svg></div><ol class="notes"><li class="bad"><b>1</b><span>WES and SAP drift apart between batch updates.</span></li><li class="bad"><b>2</b><span>Mismatches come to light late, during stock counts.</span></li><li class="bad"><b>3</b><span>Teams reconcile stock manually, line by line.</span></li></ol></div>
+        <div id="dg-after" role="tabpanel" aria-labelledby="tab-after" hidden><p class="dg-hint">Scroll sideways to see the whole diagram →</p><div class="dg-scroll"><svg class="dg" viewBox="0 0 720 558" width="720" height="558" role="img" aria-label="Stock accuracy after: real-time sync and exceptions only" xmlns="http://www.w3.org/2000/svg"><title>Stock accuracy after: real-time sync and exceptions only</title><defs><marker id="cs03a-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrow"/></marker></defs><rect x="0" y="0" width="180" height="558" class="dg-lane-a"/><rect x="0" y="0" width="180" height="40" class="dg-head"/><text x="90" y="24.5" text-anchor="middle" class="dg-head-t">Store / warehouse</text><rect x="180" y="0" width="180" height="558" class="dg-lane-b"/><rect x="180" y="0" width="180" height="40" class="dg-head"/><text x="270" y="24.5" text-anchor="middle" class="dg-head-t">WES</text><line x1="180" y1="0" x2="180" y2="558" class="dg-sep"/><rect x="360" y="0" width="180" height="558" class="dg-lane-a"/><rect x="360" y="0" width="180" height="40" class="dg-head"/><text x="450" y="24.5" text-anchor="middle" class="dg-head-t">SAP</text><line x1="360" y1="0" x2="360" y2="558" class="dg-sep"/><rect x="540" y="0" width="180" height="558" class="dg-lane-b"/><rect x="540" y="0" width="180" height="40" class="dg-head"/><text x="630" y="24.5" text-anchor="middle" class="dg-head-t">Supply chain team</text><line x1="540" y1="0" x2="540" y2="558" class="dg-sep"/><path d="M90,103 V172 H198" class="dg-edge" marker-end="url(#cs03a-arr)"/><path d="M342,172 H450 V232" class="dg-edge" marker-end="url(#cs03a-arr)"/><path d="M450,280 V318" class="dg-edge" marker-end="url(#cs03a-arr)"/><path d="M472,340 H630 V400" class="dg-edge" marker-end="url(#cs03a-arr)"/><text x="480" y="333" text-anchor="start" class="dg-elabel">Yes</text><path d="M450,362 V493" class="dg-edge" marker-end="url(#cs03a-arr)"/><text x="458" y="376" text-anchor="start" class="dg-elabel">No</text><path d="M558,424 H450 V493" class="dg-edge" marker-end="url(#cs03a-arr)"/><circle cx="90" cy="88" r="15" class="dg-start"/><text x="114" y="85" class="dg-t sm">Stock</text><text x="114" y="99" class="dg-t sm">moves</text><rect x="198" y="148" width="144" height="48" rx="9" class="dg-task"/><text x="270" y="168.5" text-anchor="middle" class="dg-t">Record movement</text><text x="270" y="183.5" text-anchor="middle" class="dg-t">in WES</text><rect x="378" y="232" width="144" height="48" rx="9" class="dg-task good"/><text x="450" y="252.5" text-anchor="middle" class="dg-t">Sync to SAP</text><text x="450" y="267.5" text-anchor="middle" class="dg-t">in real time</text><circle cx="516" cy="234" r="10" class="dg-badge good"/><text x="516" y="238" text-anchor="middle" class="dg-badge-t">1</text><path d="M450,318 L472,340 L450,362 L428,340 z" class="dg-gw"/><text x="450" y="345" text-anchor="middle" class="dg-gw-x">?</text><text x="422" y="322" text-anchor="end" class="dg-t sm">Mismatch?</text><rect x="558" y="400" width="144" height="48" rx="9" class="dg-task good"/><text x="630" y="420.5" text-anchor="middle" class="dg-t">Investigate</text><text x="630" y="435.5" text-anchor="middle" class="dg-t">the exception</text><circle cx="696" cy="402" r="10" class="dg-badge good"/><text x="696" y="406" text-anchor="middle" class="dg-badge-t">2</text><circle cx="450" cy="508" r="15" class="dg-end good"/><text x="474" y="505" class="dg-t sm strong">Stock</text><text x="474" y="519" class="dg-t sm strong">accurate</text></svg></div><ol class="notes"><li class="good"><b>1</b><span>WES and SAP stay in step as stock moves.</span></li><li class="good"><b>2</b><span>Only genuine mismatches reach the team.</span></li></ol></div>
+        <div class="legend" aria-label="How to read this diagram">
+  <span><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7" class="dg-start"/></svg>Start</span>
+  <span><svg width="26" height="16" viewBox="0 0 26 16"><rect x="1" y="1" width="24" height="14" rx="4" class="dg-task"/></svg>Step</span>
+  <span><svg width="18" height="18" viewBox="0 0 18 18"><path d="M9,1 L17,9 L9,17 L1,9 z" class="dg-gw"/></svg>Decision</span>
+  <span><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="6.5" class="dg-end"/></svg>End</span>
+  <span>Each column is one team or system. Arrows show hand-offs.</span>
+</div>
+      </div>
+      <h3 style="font-size:22px;margin:26px 0 10px">What changed, step by step</h3><div class="tablewrap"><table class="change"><thead><tr><th>Step</th><th>Before</th><th>After</th></tr></thead><tbody><tr><td>Stock update to SAP</td><td>In batches</td><td>In real time</td></tr><tr><td>Finding mismatches</td><td>During stock counts</td><td>Flagged as they happen</td></tr><tr><td>Reconciliation</td><td>Manual, line by line</td><td>Only genuine exceptions investigated</td></tr><tr><td>Recurring issues</td><td>Fixed case by case</td><td>Traced to root cause and fixed in the process</td></tr></tbody></table></div>
+    </section>
+    <section><h2>The approach</h2><ol class="steps"><li><span class="n">1</span><div><strong>Watch the work</strong>Walked the warehouse and store processes with the people doing them, and mapped each user journey.</div></li><li><span class="n">2</span><div><strong>Find the recurring breakpoints</strong>Used stock-accuracy reports with supply chain teams to see which mismatches kept coming back, and why.</div></li><li><span class="n">3</span><div><strong>Define the redesign</strong>Wrote requirements for WES workflows with real-time data sync to SAP, so both systems stay in step as stock moves.</div></li><li><span class="n">4</span><div><strong>Turn breakpoints into backlog</strong>Converted each breakpoint into user stories with acceptance criteria and agreed the priority order.</div></li><li><span class="n">5</span><div><strong>Document as-is and to-be</strong>Gave supply chain and IT teams one shared picture of how the process worked before and after.</div></li></ol></section>
+    <section><h2>Sample work: user story</h2><div class="sample">
+      <span class="code">Story · WES-US-022</span>
+      <h3>Flag stock mismatches between WES and SAP</h3><p class="story">As a supply chain analyst, I want stock differences between the WES and SAP to be flagged as soon as they appear, so that I fix real problems early instead of reconciling everything by hand.</p>
+      <h4>Acceptance criteria</h4><ul><li>Given a stock movement is confirmed in the WES, when it is sent to SAP, then SAP shows the updated quantity for that location.</li><li>Given the WES and SAP quantities differ for a location, when the check runs, then the item is added to an exceptions list with both quantities and the difference.</li><li>Given an exception has been resolved, when the quantities match again, then the item leaves the exceptions list automatically.</li><li>Given an item appears on the list three times in a week, when the weekly report runs, then it is marked as a recurring issue for root-cause review.</li></ul></div></section>
+    <section><h2>Results</h2><ul><li>Manual stock reconciliation effort for store and supply chain teams cut by about 30%.</li><li>Contributed to a reduction of about 15% in stock discrepancies.</li><li>Workflow breakpoints turned into a prioritised WES backlog.</li><li>As-is and to-be documentation shared by supply chain and IT delivery teams.</li></ul></section>
+    <section><h2>What I learned</h2><ul><li>The fastest way to find a requirement is to watch the work being done.</li><li>Most stock accuracy problems are timing problems between systems.</li><li>Prioritise the breakpoints people hit every day, not the rare dramatic ones.</li></ul><p class="note">Internal system details are simplified. Diagrams are redrawn and all figures are approximate.</p>
+      <a class="next" href="dealer-management-case-study.html"><span><span class="code">Next case study · CS-04</span><b>One system for 500+ dealers: orders, billing and stock</b></span><span aria-hidden="true">→</span></a>
+    </section>
+  </article>
+</main>
+<footer class="site"><div class="wrap">
+  <span>© 2026 Aditya Keshavrao Bankar · Senior Business Analyst / Product Owner</span>
+  <span><a href="https://www.linkedin.com/in/adityabankar" target="_blank" rel="noopener">LinkedIn</a> · <a href="Aditya-Bankar-CV.pdf" target="_blank" rel="noopener">CV (PDF)</a></span>
+</div></footer>
+</body>
+</html>

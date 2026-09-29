@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Why distributor claims take 30 days, and how to get them to 10 | Aditya Bankar</title>
+<meta name="description" content="Slow claim settlement is rarely an approval problem. It starts the day the promotion is set up.">
+<meta property="og:title" content="Why distributor claims take 30 days, and how to get them to 10 | Aditya Bankar">
+<meta property="og:description" content="Slow claim settlement is rarely an approval problem. It starts the day the promotion is set up.">
+<meta property="og:image" content="aditya.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* Layout concept: a quiet consulting dossier. Editorial serif headlines, sober sans body,
+   mono document codes, one blue taken from the portrait's tie, green only for outcomes. */
+:root {
+  --bg: #f6f7f9; --surface: #ffffff; --ink: #0f1a2e; --ink-2: #3a4459; --muted: #5a6479; --ink-3: #8a93a8; --line: #e1e5ed;
+  --accent: #1f4aa8; --accent-soft: #e9eefb; --on-accent: #ffffff;
+  --stamp: #127542; --stamp-soft: #e3f2e9; --warn: #b03b25; --warn-soft: #fbeae5;
+  --lane-a: #f8f9fb; --lane-b: #f2f4f8; --lane-head: #e7ebf3; --gw-fill: #eef2fc;
+  --shadow: 0 1px 2px rgba(15, 26, 46, .05), 0 8px 24px rgba(15, 26, 46, .06);
+  --display: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1320; --surface: #151d2d; --ink: #e8ecf4; --ink-2: #c3cad8; --muted: #9aa5bc; --ink-3: #5f6b86; --line: #263049;
+    --accent: #8fb0fb; --accent-soft: #1b2744; --on-accent: #0d1320;
+    --stamp: #6fd194; --stamp-soft: #13291c; --warn: #f09f8a; --warn-soft: #311d18;
+    --lane-a: #131b2a; --lane-b: #172031; --lane-head: #1f2a40; --gw-fill: #1b2744;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1320; --surface: #151d2d; --ink: #e8ecf4; --ink-2: #c3cad8; --muted: #9aa5bc; --ink-3: #5f6b86; --line: #263049;
+  --accent: #8fb0fb; --accent-soft: #1b2744; --on-accent: #0d1320;
+  --stamp: #6fd194; --stamp-soft: #13291c; --warn: #f09f8a; --warn-soft: #311d18;
+  --lane-a: #131b2a; --lane-b: #172031; --lane-head: #1f2a40; --gw-fill: #1b2744;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; line-height: 1.12; letter-spacing: -0.015em; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; }
+.narrow { max-width: 860px; }
+.code { font-family: var(--mono); font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+nav.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid var(--line); }
+nav.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 60px; }
+.brand { font-family: var(--display); font-size: 21px; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.navlinks { display: flex; align-items: center; gap: 20px; }
+.navlinks a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+.navlinks a:hover { color: var(--ink); }
+.navlinks a.cv { color: var(--ink); border: 1px solid var(--line); background: var(--surface); padding: 6px 12px; border-radius: 999px; }
+.theme-btn { background: var(--surface); border: 1px solid var(--line); color: var(--ink); border-radius: 999px; width: 36px; height: 36px; cursor: pointer; font-size: 15px; display: grid; place-items: center; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; font-family: var(--body); transition: transform .15s ease, box-shadow .15s ease; }
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+.btn.primary { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.tags li { font-size: 12px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-2); }
+.stamp { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--stamp); border: 1.5px solid var(--stamp); border-radius: 4px; padding: 2px 7px; }
+footer.site { border-top: 1px solid var(--line); margin-top: 56px; padding-block: 28px 44px; color: var(--muted); font-size: 14px; }
+footer.site .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+@media (max-width: 720px) { .navlinks a.hide-sm { display: none; } .navlinks { gap: 12px; } }
+
+.dg { display: block; font-family: var(--body); max-width: none; }
+.dg-lane-a { fill: var(--lane-a); } .dg-lane-b { fill: var(--lane-b); }
+.dg-head { fill: var(--lane-head); }
+.dg-head-t { fill: var(--ink); font-size: 12.5px; font-weight: 600; letter-spacing: .02em; }
+.dg-sep { stroke: var(--line); stroke-width: 1; }
+.dg-edge { stroke: var(--muted); stroke-width: 1.6; fill: none; }
+.dg-arrow { fill: var(--muted); }
+.dg-elabel { fill: var(--muted); font-size: 11px; font-weight: 600; }
+.dg-task { fill: var(--surface); stroke: var(--ink-3); stroke-width: 1.3; }
+.dg-task.good { stroke: var(--stamp); stroke-width: 1.8; }
+.dg-task.bad { stroke: var(--warn); stroke-width: 1.8; }
+.dg-t { fill: var(--ink); font-size: 12.5px; }
+.dg-t.sm { font-size: 11.5px; } .dg-t.strong { font-weight: 700; }
+.dg-start { fill: var(--surface); stroke: var(--stamp); stroke-width: 2; }
+.dg-end { fill: var(--surface); stroke: var(--ink); stroke-width: 4; }
+.dg-end.good { stroke: var(--stamp); } .dg-end.bad { stroke: var(--warn); }
+.dg-gw { fill: var(--gw-fill); stroke: var(--accent); stroke-width: 1.6; }
+.dg-gw-x { fill: var(--accent); font-size: 15px; font-weight: 700; }
+.dg-badge { stroke: var(--surface); stroke-width: 2; }
+.dg-badge.bad { fill: var(--warn); } .dg-badge.good { fill: var(--stamp); }
+.dg-badge-t { fill: var(--surface); font-size: 11px; font-weight: 700; }
+.diagram { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
+.dg-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.dg-scroll .dg { margin: 0 auto; }
+.dg-hint { display: none; font-size: 12px; color: var(--muted); margin: 0 0 8px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 14px 0 0; padding: 12px 0 0; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend svg { flex: none; }
+.notes { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 6px; }
+.notes li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; font-size: 14px; margin: 0; max-width: none; }
+.notes b { width: 20px; height: 20px; border-radius: 50%; color: var(--surface); font-size: 11px; display: grid; place-items: center; }
+.notes .bad b { background: var(--warn); } .notes .good b { background: var(--stamp); }
+.seg { display: inline-flex; background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 3px; margin-bottom: 14px; }
+.seg button { border: 0; background: none; font: inherit; font-size: 14px; font-weight: 600; color: var(--muted); padding: 7px 16px; border-radius: 999px; cursor: pointer; }
+.seg button[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(15, 26, 46, .12); }
+@media (max-width: 760px) { .dg-hint { display: block; } }
+
+
+.hero { padding-block: 48px 8px; }
+.hero h1 { font-size: clamp(34px, 5.4vw, 52px); margin: 14px 0 12px; }
+.dek { font-family: var(--display); font-style: italic; font-size: 22px; color: var(--ink-2); margin: 0; max-width: 60ch; line-height: 1.4; }
+.byline { display: flex; align-items: center; gap: 12px; margin-top: 20px; font-size: 14px; color: var(--muted); }
+.byline img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+.byline b { color: var(--ink); font-weight: 600; display: block; }
+.prose { max-width: 68ch; font-size: 17.5px; line-height: 1.75; padding-block: 18px 10px; border-top: 1px solid var(--line); margin-top: 26px; }
+.prose h2 { font-size: 28px; margin: 34px 0 10px; }
+.prose p { margin: 0 0 16px; }
+.prose ul, .prose ol { padding-left: 22px; margin: 0 0 16px; } .prose li { margin: 8px 0; }
+.prose ol li b { display: block; }
+.next { display: flex; justify-content: space-between; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; margin-top: 30px; text-decoration: none; color: var(--ink); max-width: 68ch; }
+.next:hover { border-color: var(--accent); }
+.next b { font-family: var(--display); font-weight: 500; font-size: 22px; display: block; line-height: 1.2; }
+</style>
+<script>
+(function () {
+  var root = document.documentElement;
+  try { var t = localStorage.getItem('ab-theme'); if (t === 'dark' || t === 'light') root.setAttribute('data-theme', t); } catch (e) {}
+  function isDark() { var t = root.getAttribute('data-theme'); if (t) return t === 'dark'; return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
+  function paint() { var b = document.getElementById('theme-btn'); if (b) { b.textContent = isDark() ? '☀' : '☾'; b.setAttribute('aria-label', isDark() ? 'Switch to light theme' : 'Switch to dark theme'); } }
+  document.addEventListener('DOMContentLoaded', function () {
+    paint();
+    var b = document.getElementById('theme-btn');
+    if (b) b.addEventListener('click', function () { var n = isDark() ? 'light' : 'dark'; root.setAttribute('data-theme', n); try { localStorage.setItem('ab-theme', n); } catch (e) {} paint(); });
+    document.querySelectorAll('[role="tablist"]:not([data-shared])').forEach(function (list) {
+      var tabs = list.querySelectorAll('[role="tab"]');
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          tabs.forEach(function (t) { var on = t === tab; t.setAttribute('aria-selected', on ? 'true' : 'false'); var p = document.getElementById(t.getAttribute('aria-controls')); if (p) p.hidden = !on; });
+        });
+      });
+    });
+  });
+})();
+</script>
+</head>
+<body>
+<nav class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">Aditya Bankar</a>
+    <div class="navlinks">
+      <a href="index.html#work">All work</a>
+      <a class="cv" href="Aditya-Bankar-CV.pdf" target="_blank" rel="noopener">CV</a>
+      <button class="theme-btn" id="theme-btn" type="button" aria-label="Switch theme">☾</button>
+    </div>
+  </div>
+</nav>
+<main class="wrap narrow">
+  <header class="hero">
+    <span class="code">Writing · Trade promotions · 4 min read</span>
+    <h1>Why distributor claims take 30 days, and how to get them to 10</h1>
+    <p class="dek">Slow claim settlement is rarely an approval problem. It starts the day the promotion is set up.</p>
+    <div class="byline"><img src="aditya-avatar.jpg" alt="Aditya Bankar" width="40" height="40"><span><b>Aditya Bankar</b>Senior Business Analyst / Product Owner · September 2026</span></div>
+  </header>
+  <article class="prose"><p>In FMCG, distributors fund trade promotions first and get paid back later. A discount at the outlet, a free case, a volume slab: the distributor gives it, then files a claim with the brand. Until that claim is settled, the distributor is lending the brand money.</p>
+<p>On a recent Distributor Management System rollout for a global FMCG company, the average claim took about 30 days to settle. When we mapped the journey with the market teams, very little of that time was spent on actual decisions.</p>
+<h2>Where the days go</h2>
+<ul><li>The promotion is shared as a document or an email, so the distributor, the sales team and finance each read it slightly differently.</li><li>The claim is built after the sale, by hand, from invoices and paper proof.</li><li>Sales checks every line, then finance checks it again, whether the claim is routine or not.</li><li>Disputed lines go back and forth and hold up the whole claim.</li><li>The credit note is raised last, after every approval is done.</li></ul>
+<p>None of these steps is unreasonable on its own. Together they add up to a month.</p>
+<h2>What actually fixes it</h2>
+<ol><li><b>Set the promotion up once, in the system.</b>Promotion type, eligibility, value, budget and dates live in one place, so the system decides what qualifies instead of people.</li><li><b>Build claims from invoices.</b>If the discount was applied on the invoice, the claim can be generated from that data. The evidence is already there.</li><li><b>Check by rule, review by exception.</b>Rules check eligibility, budget, dates and duplicates on every line. People only see the lines that break a rule.</li><li><b>Connect the approval to the ERP.</b>An approved claim should create its credit note without anyone re-keying it.</li></ol>
+<h2>Agree the rules before you build</h2>
+<p>Review by exception only works if finance and sales trust the rules. That agreement has to happen in the workshops, before build. Which checks are automatic? What makes a line an exception? Who owns the exception queue? If those answers are vague, people go back to checking everything by hand.</p>
+<h2>The result</h2>
+<p>On our rollout, average settlement fell from about 30 days to about 10, and the client's promotional governance was kept intact. The biggest gain did not come from approving faster. It came from getting the promotion set-up right, so fewer claims needed a person at all.</p></article>
+  <a class="next" href="two-markets-one-system.html"><span><span class="code">Next article</span><b>Two markets, one system: five lessons from a fit-gap</b></span><span aria-hidden="true">→</span></a>
+</main>
+<footer class="site"><div class="wrap">
+  <span>© 2026 Aditya Keshavrao Bankar · Senior Business Analyst / Product Owner</span>
+  <span><a href="https://www.linkedin.com/in/adityabankar" target="_blank" rel="noopener">LinkedIn</a> · <a href="Aditya-Bankar-CV.pdf" target="_blank" rel="noopener">CV (PDF)</a></span>
+</div></footer>
+</body>
+</html>

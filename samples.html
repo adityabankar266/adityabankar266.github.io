@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BA Work Samples | Aditya Bankar</title>
+<meta name="description" content="An illustrative document pack for one feature: BRD extract, user stories, traceability matrix, UAT test cases and a change request.">
+<meta property="og:title" content="BA Work Samples | Aditya Bankar">
+<meta property="og:description" content="An illustrative document pack for one feature: BRD extract, user stories, traceability matrix, UAT test cases and a change request.">
+<meta property="og:image" content="aditya.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* Layout concept: a quiet consulting dossier. Editorial serif headlines, sober sans body,
+   mono document codes, one blue taken from the portrait's tie, green only for outcomes. */
+:root {
+  --bg: #f6f7f9; --surface: #ffffff; --ink: #0f1a2e; --ink-2: #3a4459; --muted: #5a6479; --ink-3: #8a93a8; --line: #e1e5ed;
+  --accent: #1f4aa8; --accent-soft: #e9eefb; --on-accent: #ffffff;
+  --stamp: #127542; --stamp-soft: #e3f2e9; --warn: #b03b25; --warn-soft: #fbeae5;
+  --lane-a: #f8f9fb; --lane-b: #f2f4f8; --lane-head: #e7ebf3; --gw-fill: #eef2fc;
+  --shadow: 0 1px 2px rgba(15, 26, 46, .05), 0 8px 24px rgba(15, 26, 46, .06);
+  --display: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1320; --surface: #151d2d; --ink: #e8ecf4; --ink-2: #c3cad8; --muted: #9aa5bc; --ink-3: #5f6b86; --line: #263049;
+    --accent: #8fb0fb; --accent-soft: #1b2744; --on-accent: #0d1320;
+    --stamp: #6fd194; --stamp-soft: #13291c; --warn: #f09f8a; --warn-soft: #311d18;
+    --lane-a: #131b2a; --lane-b: #172031; --lane-head: #1f2a40; --gw-fill: #1b2744;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1320; --surface: #151d2d; --ink: #e8ecf4; --ink-2: #c3cad8; --muted: #9aa5bc; --ink-3: #5f6b86; --line: #263049;
+  --accent: #8fb0fb; --accent-soft: #1b2744; --on-accent: #0d1320;
+  --stamp: #6fd194; --stamp-soft: #13291c; --warn: #f09f8a; --warn-soft: #311d18;
+  --lane-a: #131b2a; --lane-b: #172031; --lane-head: #1f2a40; --gw-fill: #1b2744;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; line-height: 1.12; letter-spacing: -0.015em; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; }
+.narrow { max-width: 860px; }
+.code { font-family: var(--mono); font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+nav.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid var(--line); }
+nav.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 60px; }
+.brand { font-family: var(--display); font-size: 21px; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.navlinks { display: flex; align-items: center; gap: 20px; }
+.navlinks a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+.navlinks a:hover { color: var(--ink); }
+.navlinks a.cv { color: var(--ink); border: 1px solid var(--line); background: var(--surface); padding: 6px 12px; border-radius: 999px; }
+.theme-btn { background: var(--surface); border: 1px solid var(--line); color: var(--ink); border-radius: 999px; width: 36px; height: 36px; cursor: pointer; font-size: 15px; display: grid; place-items: center; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; font-family: var(--body); transition: transform .15s ease, box-shadow .15s ease; }
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+.btn.primary { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.tags li { font-size: 12px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-2); }
+.stamp { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--stamp); border: 1.5px solid var(--stamp); border-radius: 4px; padding: 2px 7px; }
+footer.site { border-top: 1px solid var(--line); margin-top: 56px; padding-block: 28px 44px; color: var(--muted); font-size: 14px; }
+footer.site .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+@media (max-width: 720px) { .navlinks a.hide-sm { display: none; } .navlinks { gap: 12px; } }
+
+.dg { display: block; font-family: var(--body); max-width: none; }
+.dg-lane-a { fill: var(--lane-a); } .dg-lane-b { fill: var(--lane-b); }
+.dg-head { fill: var(--lane-head); }
+.dg-head-t { fill: var(--ink); font-size: 12.5px; font-weight: 600; letter-spacing: .02em; }
+.dg-sep { stroke: var(--line); stroke-width: 1; }
+.dg-edge { stroke: var(--muted); stroke-width: 1.6; fill: none; }
+.dg-arrow { fill: var(--muted); }
+.dg-elabel { fill: var(--muted); font-size: 11px; font-weight: 600; }
+.dg-task { fill: var(--surface); stroke: var(--ink-3); stroke-width: 1.3; }
+.dg-task.good { stroke: var(--stamp); stroke-width: 1.8; }
+.dg-task.bad { stroke: var(--warn); stroke-width: 1.8; }
+.dg-t { fill: var(--ink); font-size: 12.5px; }
+.dg-t.sm { font-size: 11.5px; } .dg-t.strong { font-weight: 700; }
+.dg-start { fill: var(--surface); stroke: var(--stamp); stroke-width: 2; }
+.dg-end { fill: var(--surface); stroke: var(--ink); stroke-width: 4; }
+.dg-end.good { stroke: var(--stamp); } .dg-end.bad { stroke: var(--warn); }
+.dg-gw { fill: var(--gw-fill); stroke: var(--accent); stroke-width: 1.6; }
+.dg-gw-x { fill: var(--accent); font-size: 15px; font-weight: 700; }
+.dg-badge { stroke: var(--surface); stroke-width: 2; }
+.dg-badge.bad { fill: var(--warn); } .dg-badge.good { fill: var(--stamp); }
+.dg-badge-t { fill: var(--surface); font-size: 11px; font-weight: 700; }
+.diagram { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
+.dg-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.dg-scroll .dg { margin: 0 auto; }
+.dg-hint { display: none; font-size: 12px; color: var(--muted); margin: 0 0 8px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 14px 0 0; padding: 12px 0 0; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend svg { flex: none; }
+.notes { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 6px; }
+.notes li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; font-size: 14px; margin: 0; max-width: none; }
+.notes b { width: 20px; height: 20px; border-radius: 50%; color: var(--surface); font-size: 11px; display: grid; place-items: center; }
+.notes .bad b { background: var(--warn); } .notes .good b { background: var(--stamp); }
+.seg { display: inline-flex; background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 3px; margin-bottom: 14px; }
+.seg button { border: 0; background: none; font: inherit; font-size: 14px; font-weight: 600; color: var(--muted); padding: 7px 16px; border-radius: 999px; cursor: pointer; }
+.seg button[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(15, 26, 46, .12); }
+@media (max-width: 760px) { .dg-hint { display: block; } }
+
+
+.hero { padding-block: 48px 10px; }
+.hero h1 { font-size: clamp(34px, 5.2vw, 52px); margin: 14px 0 14px; }
+.lede { font-size: 18px; color: var(--ink-2); max-width: 64ch; margin: 0; }
+.notice { display: inline-flex; gap: 8px; align-items: center; margin-top: 18px; font-size: 13px; color: var(--muted); background: var(--surface); border: 1px dashed var(--line); padding: 6px 12px; border-radius: 999px; }
+.pack { margin-top: 28px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; border-bottom: 1px solid var(--line); margin-bottom: 22px; }
+.tabs button { border: 0; background: none; font: inherit; font-size: 15px; font-weight: 600; color: var(--muted); padding: 10px 14px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+.doc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+.doc-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
+.doc h2 { font-size: 26px; margin: 0; }
+.doc h3 { font-size: 19px; margin: 22px 0 8px; font-family: var(--body); font-weight: 600; letter-spacing: 0; }
+.doc p, .doc li { max-width: 72ch; }
+.doc ul { padding-left: 20px; margin: 6px 0; } .doc li { margin: 5px 0; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; }
+.rules { list-style: none; padding: 0 !important; }
+.rules li { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); margin: 0 !important; max-width: none !important; }
+.rules code, .tid { font-family: var(--mono); font-size: 12.5px; color: var(--accent); }
+.story { border-top: 1px solid var(--line); padding-top: 16px; margin-top: 16px; }
+.story:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+.story h3 { margin-top: 4px; }
+.story .as { font-style: italic; }
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 14px; }
+th, td { text-align: left; padding: 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.pill { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+.pill.ok { background: var(--stamp-soft); color: var(--stamp); } .pill.warn { background: var(--warn-soft); color: var(--warn); } .pill.info { background: var(--accent-soft); color: var(--accent); }
+dl.kv { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 0; margin: 0; }
+dl.kv dt, dl.kv dd { padding: 9px 0; border-bottom: 1px solid var(--line); margin: 0; }
+dl.kv dt { font-weight: 600; font-size: 14px; }
+.options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 8px; }
+.options div { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 14px; }
+.options div.pick { border-color: var(--stamp); background: var(--stamp-soft); }
+.options b { display: block; }
+@media (max-width: 700px) { .two, .options { grid-template-columns: 1fr; } dl.kv { grid-template-columns: 1fr; } dl.kv dt { border-bottom: 0; padding-bottom: 0; } .doc { padding: 18px; } }
+</style>
+<script>
+(function () {
+  var root = document.documentElement;
+  try { var t = localStorage.getItem('ab-theme'); if (t === 'dark' || t === 'light') root.setAttribute('data-theme', t); } catch (e) {}
+  function isDark() { var t = root.getAttribute('data-theme'); if (t) return t === 'dark'; return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
+  function paint() { var b = document.getElementById('theme-btn'); if (b) { b.textContent = isDark() ? '☀' : '☾'; b.setAttribute('aria-label', isDark() ? 'Switch to light theme' : 'Switch to dark theme'); } }
+  document.addEventListener('DOMContentLoaded', function () {
+    paint();
+    var b = document.getElementById('theme-btn');
+    if (b) b.addEventListener('click', function () { var n = isDark() ? 'light' : 'dark'; root.setAttribute('data-theme', n); try { localStorage.setItem('ab-theme', n); } catch (e) {} paint(); });
+    document.querySelectorAll('[role="tablist"]:not([data-shared])').forEach(function (list) {
+      var tabs = list.querySelectorAll('[role="tab"]');
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          tabs.forEach(function (t) { var on = t === tab; t.setAttribute('aria-selected', on ? 'true' : 'false'); var p = document.getElementById(t.getAttribute('aria-controls')); if (p) p.hidden = !on; });
+        });
+      });
+    });
+  });
+})();
+</script>
+</head>
+<body>
+<nav class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">Aditya Bankar</a>
+    <div class="navlinks">
+      <a href="index.html#work">All work</a>
+      <a class="cv" href="Aditya-Bankar-CV.pdf" target="_blank" rel="noopener">CV</a>
+      <button class="theme-btn" id="theme-btn" type="button" aria-label="Switch theme">☾</button>
+    </div>
+  </div>
+</nav>
+<main class="wrap narrow">
+  <header class="hero">
+    <span class="code">Work samples · Business analysis documents</span>
+    <h1>One feature, documented end to end</h1>
+    <p class="lede">How I take a feature from requirement to sign-off, shown on one example: automated distributor promotion claims. Each tab is a document I would write or maintain on a real project.</p>
+    <span class="notice">Illustrative documents written for this portfolio. They contain no client material.</span>
+  </header>
+  <div class="pack">
+    <div class="tabs" role="tablist" aria-label="Documents">
+      <button type="button" role="tab" id="tab-brd" aria-controls="panel-brd" aria-selected="true">Requirements (BRD)</button><button type="button" role="tab" id="tab-stories" aria-controls="panel-stories" aria-selected="false">User stories</button><button type="button" role="tab" id="tab-rtm" aria-controls="panel-rtm" aria-selected="false">Traceability</button><button type="button" role="tab" id="tab-uat" aria-controls="panel-uat" aria-selected="false">UAT tests</button><button type="button" role="tab" id="tab-cr" aria-controls="panel-cr" aria-selected="false">Change request</button>
+    </div>
+    <div class="doc" role="tabpanel" id="panel-brd" aria-labelledby="tab-brd">
+      <div class="doc-head"><div><span class="code">BRD-CLM-01 · v1.2</span><h2>Distributor promotion claims</h2></div><span class="code">Owner: Business Analyst</span></div>
+      <h3>Purpose</h3>
+      <p>Let distributors get promotion reimbursements without compiling claims by hand, and cut average settlement from about 30 days to about 10.</p>
+      <div class="two">
+        <div><h3>In scope</h3><ul><li>Generating claims from invoices that applied an active promotion</li><li>Rule-based validation of every claim line</li><li>Review of exceptions by sales operations</li><li>Credit note creation in the ERP</li></ul></div>
+        <div><h3>Out of scope</h3><ul><li>Promotion budgeting and planning</li><li>Payments to distributors, which finance handles</li><li>Changes to the invoicing process</li></ul></div>
+      </div>
+      <h3>Stakeholders</h3>
+      <p>Distributor finance users, sales operations reviewers, brand finance, and IT teams for the DMS and ERP.</p>
+      <h3>Business rules</h3>
+      <ul class="rules">
+        <li><code>BR-01</code><span>A claim line is created only for invoices that applied an active promotion.</span></li>
+        <li><code>BR-02</code><span>A claim line cannot exceed the promotion's remaining budget.</span></li>
+        <li><code>BR-03</code><span>Invoices dated outside the promotion's validity dates are excluded.</span></li>
+        <li><code>BR-04</code><span>The same invoice line cannot be claimed twice.</span></li>
+        <li><code>BR-05</code><span>Cancelled invoices and returns reverse the related claim value.</span></li>
+        <li><code>BR-06</code><span>Claims with no exceptions go for approval without manual review.</span></li>
+      </ul>
+      <div class="two">
+        <div><h3>Assumptions</h3><ul><li>Promotions are set up in the DMS before they go live.</li><li>The ERP accepts credit notes through the existing integration.</li><li>Claims are generated at the end of each claim period.</li></ul></div>
+        <div><h3>Success measures</h3><ul><li>Average settlement of 10 days or less</li><li>Fewer than 5% of claim lines raised as exceptions</li><li>No duplicate payments</li></ul></div>
+      </div></div>
+    <div class="doc" role="tabpanel" id="panel-stories" aria-labelledby="tab-stories" hidden>
+      <div class="doc-head"><div><span class="code">Epic · CLM-E1</span><h2>Automated promotion claims</h2></div><span class="code">3 stories · MoSCoW: Must</span></div>
+      <div class="story"><span class="tid">US-014</span><h3>Auto-generate claims from invoiced promotions</h3>
+        <p class="as">As a distributor finance user, I want claims to be generated automatically from invoices that applied an active promotion, so that I don't compile claims by hand and I get paid faster.</p>
+        <b style="font-size:14px">Acceptance criteria</b><ul><li>Given an invoice applied an active promotion, when the claim period closes, then a claim line is created with the promotion ID, outlet, quantity and value.</li><li>Given a line breaks a business rule, when validation runs, then it is flagged as an exception with the rule shown.</li><li>Given an invoice is cancelled or goods are returned, when claims are generated, then the related claim value is reversed.</li></ul></div><div class="story"><span class="tid">US-015</span><h3>Review only the exceptions</h3>
+        <p class="as">As a sales operations reviewer, I want to see only the claim lines that break a rule, with the reason, so that I can approve or reject them quickly.</p>
+        <b style="font-size:14px">Acceptance criteria</b><ul><li>Given a claim has exceptions, when I open it, then I see only the flagged lines and the rule each one broke.</li><li>Given I reject a line, when I save, then I must add a comment and the distributor is notified.</li><li>Given a claim has no exceptions, when validation finishes, then it goes for approval without appearing in my queue.</li></ul></div><div class="story"><span class="tid">US-016</span><h3>Create the credit note automatically</h3>
+        <p class="as">As a brand finance user, I want approved claims to create a credit note in the ERP automatically, so that distributors are reimbursed without re-keying.</p>
+        <b style="font-size:14px">Acceptance criteria</b><ul><li>Given a claim is approved, when it is sent to the ERP, then a credit note is created that references the claim ID.</li><li>Given the ERP rejects the credit note, when the error returns, then the claim is marked "Pending ERP" and the error is logged.</li><li>Given the credit note is created, when I open the claim, then I see the credit note number and date.</li></ul></div></div>
+    <div class="doc" role="tabpanel" id="panel-rtm" aria-labelledby="tab-rtm" hidden>
+      <div class="doc-head"><div><span class="code">RTM-CLM-01</span><h2>Requirements traceability matrix</h2></div><span class="code">Every rule traced to a story and a test</span></div>
+      <div class="tablewrap"><table class=""><thead><tr><th>Rule</th><th>Requirement</th><th>Stories</th><th>Test cases</th><th>Status</th></tr></thead><tbody><tr><td><span class="tid">BR-01</span></td><td>Claim only for active promotions</td><td>US-014</td><td>TC-01, TC-02</td><td><span class="pill ok">Passed</span></td></tr><tr><td><span class="tid">BR-02</span></td><td>Stay within remaining budget</td><td>US-014, US-015</td><td>TC-03</td><td><span class="pill ok">Passed</span></td></tr><tr><td><span class="tid">BR-03</span></td><td>Exclude invoices outside validity dates</td><td>US-014</td><td>TC-04</td><td><span class="pill ok">Passed</span></td></tr><tr><td><span class="tid">BR-04</span></td><td>No duplicate claim lines</td><td>US-014</td><td>TC-05</td><td><span class="pill info">Passed on retest</span></td></tr><tr><td><span class="tid">BR-05</span></td><td>Reverse cancelled and returned invoices</td><td>US-014</td><td>TC-06</td><td><span class="pill ok">Passed</span></td></tr><tr><td><span class="tid">BR-06</span></td><td>Clean claims skip manual review</td><td>US-015</td><td>TC-07</td><td><span class="pill ok">Passed</span></td></tr><tr><td><span class="tid">—</span></td><td>Credit note created in the ERP</td><td>US-016</td><td>TC-08</td><td><span class="pill ok">Passed</span></td></tr></tbody></table></div></div>
+    <div class="doc" role="tabpanel" id="panel-uat" aria-labelledby="tab-uat" hidden>
+      <div class="doc-head"><div><span class="code">UAT-CLM · Cycle 2</span><h2>User acceptance test cases</h2></div><span class="code">Run by distributor finance and sales operations</span></div>
+      <div class="tablewrap"><table class=""><thead><tr><th>ID</th><th>Scenario</th><th>Steps</th><th>Expected result</th><th>Result</th></tr></thead><tbody><tr><td><span class="tid">TC-01</span></td><td>Invoice with an active promotion</td><td>Post an invoice using promotion P-101, then close the claim period</td><td>Claim line created with promotion, outlet, quantity and value</td><td><span class="pill ok">Pass</span></td></tr><tr><td><span class="tid">TC-03</span></td><td>Budget exceeded</td><td>Create claim lines worth more than the remaining budget</td><td>Extra value flagged as "Budget exceeded"</td><td><span class="pill ok">Pass</span></td></tr><tr><td><span class="tid">TC-04</span></td><td>Outside validity dates</td><td>Post an invoice dated after the promotion ends</td><td>No claim line created</td><td><span class="pill ok">Pass</span></td></tr><tr><td><span class="tid">TC-05</span></td><td>Duplicate generation</td><td>Run claim generation twice for the same period</td><td>No duplicate lines</td><td><span class="pill warn">Fail, then pass in build 1.4</span></td></tr><tr><td><span class="tid">TC-06</span></td><td>Goods returned</td><td>Return goods from an invoice that used a promotion</td><td>Related claim value reversed</td><td><span class="pill ok">Pass</span></td></tr><tr><td><span class="tid">TC-08</span></td><td>Credit note</td><td>Approve a claim with no exceptions</td><td>Credit note created in the ERP with the claim ID</td><td><span class="pill ok">Pass</span></td></tr></tbody></table></div></div>
+    <div class="doc" role="tabpanel" id="panel-cr" aria-labelledby="tab-cr" hidden>
+      <div class="doc-head"><div><span class="code">CR-07 · Raised in sprint 5</span><h2>Allow partial approval of a claim</h2></div><span class="pill ok">Approved</span></div>
+      <dl class="kv">
+        <dt>Requested by</dt><dd>Sales operations</dd>
+        <dt>Reason</dt><dd>One disputed line holds up the whole claim, and the distributor's money with it.</dd>
+        <dt>Change</dt><dd>Reviewers can approve the clean lines of a claim and hold only the disputed ones.</dd>
+      </dl>
+      <h3>Impact assessment</h3>
+      <dl class="kv">
+        <dt>Scope</dt><dd>US-015 and US-016 change. One new claim status: "Partly approved".</dd>
+        <dt>Systems</dt><dd>DMS claim screen and the ERP credit note integration, which now sends one credit note per approved batch.</dd>
+        <dt>Effort</dt><dd>About 8 story points to build and 3 to test.</dd>
+        <dt>Timeline</dt><dd>Fits in the next sprint without moving go-live.</dd>
+        <dt>Risks</dt><dd>More credit notes per claim. Finance must match them by claim ID.</dd>
+        <dt>Testing</dt><dd>New cases TC-09 and TC-10. Regression on TC-07 and TC-08.</dd>
+      </dl>
+      <h3>Options</h3>
+      <div class="options">
+        <div class="pick"><b>A. Approve now</b>Faster payments for distributors; small build in sprint 6. Recommended.</div>
+        <div><b>B. Defer to phase 2</b>No change to scope, but disputes keep delaying whole claims.</div>
+        <div><b>C. Reject</b>No cost, and the main cause of delays stays in place.</div>
+      </div>
+      <h3>Decision</h3><p>Option A approved by the change board for sprint 6.</p></div>
+  </div>
+</main>
+<footer class="site"><div class="wrap">
+  <span>© 2026 Aditya Keshavrao Bankar · Senior Business Analyst / Product Owner</span>
+  <span><a href="https://www.linkedin.com/in/adityabankar" target="_blank" rel="noopener">LinkedIn</a> · <a href="Aditya-Bankar-CV.pdf" target="_blank" rel="noopener">CV (PDF)</a></span>
+</div></footer>
+</body>
+</html>

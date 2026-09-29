@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aditya Bankar Portfolio</title>
+<meta name="description" content="Senior Business Analyst and Product Owner for FMCG distribution: DMS, order-to-cash, trade promotions and claims.">
+<meta property="og:title" content="Aditya Bankar Portfolio">
+<meta property="og:description" content="Senior Business Analyst and Product Owner for FMCG distribution: DMS, order-to-cash, trade promotions and claims.">
+<meta property="og:image" content="aditya.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* Layout concept: a quiet consulting dossier. Editorial serif headlines, sober sans body,
+   mono document codes, one blue taken from the portrait's tie, green only for outcomes. */
+:root {
+  --bg: #f6f7f9; --surface: #ffffff; --ink: #0f1a2e; --ink-2: #3a4459; --muted: #5a6479; --ink-3: #8a93a8; --line: #e1e5ed;
+  --accent: #1f4aa8; --accent-soft: #e9eefb; --on-accent: #ffffff;
+  --stamp: #127542; --stamp-soft: #e3f2e9; --warn: #b03b25; --warn-soft: #fbeae5;
+  --lane-a: #f8f9fb; --lane-b: #f2f4f8; --lane-head: #e7ebf3; --gw-fill: #eef2fc;
+  --shadow: 0 1px 2px rgba(15, 26, 46, .05), 0 8px 24px rgba(15, 26, 46, .06);
+  --display: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1320; --surface: #151d2d; --ink: #e8ecf4; --ink-2: #c3cad8; --muted: #9aa5bc; --ink-3: #5f6b86; --line: #263049;
+    --accent: #8fb0fb; --accent-soft: #1b2744; --on-accent: #0d1320;
+    --stamp: #6fd194; --stamp-soft: #13291c; --warn: #f09f8a; --warn-soft: #311d18;
+    --lane-a: #131b2a; --lane-b: #172031; --lane-head: #1f2a40; --gw-fill: #1b2744;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1320; --surface: #151d2d; --ink: #e8ecf4; --ink-2: #c3cad8; --muted: #9aa5bc; --ink-3: #5f6b86; --line: #263049;
+  --accent: #8fb0fb; --accent-soft: #1b2744; --on-accent: #0d1320;
+  --stamp: #6fd194; --stamp-soft: #13291c; --warn: #f09f8a; --warn-soft: #311d18;
+  --lane-a: #131b2a; --lane-b: #172031; --lane-head: #1f2a40; --gw-fill: #1b2744;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; line-height: 1.12; letter-spacing: -0.015em; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; }
+.narrow { max-width: 860px; }
+.code { font-family: var(--mono); font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+nav.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid var(--line); }
+nav.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 60px; }
+.brand { font-family: var(--display); font-size: 21px; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.navlinks { display: flex; align-items: center; gap: 20px; }
+.navlinks a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+.navlinks a:hover { color: var(--ink); }
+.navlinks a.cv { color: var(--ink); border: 1px solid var(--line); background: var(--surface); padding: 6px 12px; border-radius: 999px; }
+.theme-btn { background: var(--surface); border: 1px solid var(--line); color: var(--ink); border-radius: 999px; width: 36px; height: 36px; cursor: pointer; font-size: 15px; display: grid; place-items: center; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; font-family: var(--body); transition: transform .15s ease, box-shadow .15s ease; }
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+.btn.primary { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.tags li { font-size: 12px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-2); }
+.stamp { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--stamp); border: 1.5px solid var(--stamp); border-radius: 4px; padding: 2px 7px; }
+footer.site { border-top: 1px solid var(--line); margin-top: 56px; padding-block: 28px 44px; color: var(--muted); font-size: 14px; }
+footer.site .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+@media (max-width: 720px) { .navlinks a.hide-sm { display: none; } .navlinks { gap: 12px; } }
+
+.dg { display: block; font-family: var(--body); max-width: none; }
+.dg-lane-a { fill: var(--lane-a); } .dg-lane-b { fill: var(--lane-b); }
+.dg-head { fill: var(--lane-head); }
+.dg-head-t { fill: var(--ink); font-size: 12.5px; font-weight: 600; letter-spacing: .02em; }
+.dg-sep { stroke: var(--line); stroke-width: 1; }
+.dg-edge { stroke: var(--muted); stroke-width: 1.6; fill: none; }
+.dg-arrow { fill: var(--muted); }
+.dg-elabel { fill: var(--muted); font-size: 11px; font-weight: 600; }
+.dg-task { fill: var(--surface); stroke: var(--ink-3); stroke-width: 1.3; }
+.dg-task.good { stroke: var(--stamp); stroke-width: 1.8; }
+.dg-task.bad { stroke: var(--warn); stroke-width: 1.8; }
+.dg-t { fill: var(--ink); font-size: 12.5px; }
+.dg-t.sm { font-size: 11.5px; } .dg-t.strong { font-weight: 700; }
+.dg-start { fill: var(--surface); stroke: var(--stamp); stroke-width: 2; }
+.dg-end { fill: var(--surface); stroke: var(--ink); stroke-width: 4; }
+.dg-end.good { stroke: var(--stamp); } .dg-end.bad { stroke: var(--warn); }
+.dg-gw { fill: var(--gw-fill); stroke: var(--accent); stroke-width: 1.6; }
+.dg-gw-x { fill: var(--accent); font-size: 15px; font-weight: 700; }
+.dg-badge { stroke: var(--surface); stroke-width: 2; }
+.dg-badge.bad { fill: var(--warn); } .dg-badge.good { fill: var(--stamp); }
+.dg-badge-t { fill: var(--surface); font-size: 11px; font-weight: 700; }
+.diagram { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
+.dg-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.dg-scroll .dg { margin: 0 auto; }
+.dg-hint { display: none; font-size: 12px; color: var(--muted); margin: 0 0 8px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 14px 0 0; padding: 12px 0 0; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend svg { flex: none; }
+.notes { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 6px; }
+.notes li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; font-size: 14px; margin: 0; max-width: none; }
+.notes b { width: 20px; height: 20px; border-radius: 50%; color: var(--surface); font-size: 11px; display: grid; place-items: center; }
+.notes .bad b { background: var(--warn); } .notes .good b { background: var(--stamp); }
+.seg { display: inline-flex; background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 3px; margin-bottom: 14px; }
+.seg button { border: 0; background: none; font: inherit; font-size: 14px; font-weight: 600; color: var(--muted); padding: 7px 16px; border-radius: 999px; cursor: pointer; }
+.seg button[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(15, 26, 46, .12); }
+@media (max-width: 760px) { .dg-hint { display: block; } }
+
+
+.hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px; align-items: center; padding-block: 56px 36px; }
+.avail { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); }
+.live { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--stamp); background: var(--stamp-soft); padding: 4px 12px 4px 10px; border-radius: 999px; }
+.live i { width: 8px; height: 8px; border-radius: 50%; background: var(--stamp); animation: pulse 2.2s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--stamp) 55%, transparent); } 70% { box-shadow: 0 0 0 9px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+.hero h1 { font-size: clamp(38px, 5.6vw, 64px); margin: 20px 0 18px; letter-spacing: -0.02em; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.lede { font-size: 18px; color: var(--ink-2); max-width: 52ch; margin: 0 0 26px; }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.mini { display: none; align-items: center; gap: 12px; margin-bottom: 18px; font-size: 14px; color: var(--muted); }
+.mini img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; box-shadow: var(--shadow); }
+.mini b { display: block; color: var(--ink); font-size: 16px; }
+.proof { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin-top: 34px; border-top: 1px solid var(--line); }
+.proof div { padding: 16px 16px 0 0; }
+.proof div + div { padding-left: 16px; border-left: 1px solid var(--line); }
+.proof b { display: block; font-family: var(--display); font-weight: 600; font-size: 30px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.proof span { font-size: 13px; color: var(--muted); line-height: 1.4; display: block; margin-top: 4px; }
+.portrait { position: relative; max-width: 500px; justify-self: end; width: 100%; }
+.portrait img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 40%; border-radius: 22px; box-shadow: var(--shadow); }
+.portrait .chip { position: absolute; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: 14px; padding: 10px 14px; font-size: 13px; line-height: 1.35; max-width: 240px; }
+.portrait .chip b { display: block; font-size: 14px; color: var(--ink); }
+.portrait .chip.a { left: -36px; bottom: -26px; max-width: 215px; }
+.portrait .chip.b { right: -14px; top: -20px; }
+.portrait .chip .code { font-size: 10.5px; display: block; margin-bottom: 2px; }
+
+section.block { padding-block: 56px; border-top: 1px solid var(--line); }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 16px 32px; flex-wrap: wrap; margin-bottom: 26px; }
+.sec-head h2 { font-size: clamp(32px, 4.2vw, 44px); margin: 8px 0 0; }
+.sec-head p { margin: 0; color: var(--muted); max-width: 48ch; }
+
+.cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.case { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; text-decoration: none; color: var(--ink); overflow: hidden; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; min-width: 0; }
+.case:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
+.thumb { height: 210px; overflow: hidden; background: var(--lane-a); border-bottom: 1px solid var(--line); position: relative; }
+.thumb .dg { width: 100%; height: auto; transform-origin: top center; transition: transform .6s ease; }
+.case:hover .thumb .dg { transform: translateY(-8%); }
+.thumb::after { content: ""; position: absolute; inset: auto 0 0 0; height: 70px; background: linear-gradient(to bottom, transparent, var(--surface)); }
+.thumb .lbl { position: absolute; left: 14px; bottom: 12px; z-index: 1; font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.case-body { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.case-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.big { font-family: var(--display); font-weight: 600; font-size: clamp(34px, 4vw, 44px); line-height: 1; color: var(--stamp); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.big.blue { color: var(--accent); }
+.big small { display: block; font-family: var(--body); font-weight: 500; font-size: 14px; color: var(--muted); letter-spacing: 0; margin-top: 8px; }
+.case h3 { font-size: 24px; margin: 0; }
+.case p { margin: 0; color: var(--muted); font-size: 15px; }
+.case .foot { margin-top: auto; padding-top: 6px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.read { font-weight: 600; color: var(--ink); display: inline-flex; gap: 6px; align-items: center; font-size: 15px; }
+.read span { transition: transform .2s ease; } .case:hover .read span { transform: translateX(4px); }
+
+.tiles2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.wcard { display: flex; flex-direction: column; gap: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px; text-decoration: none; color: var(--ink); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; min-width: 0; }
+.wcard:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
+.wcard h3 { font-size: 25px; margin: 0; }
+.wcard p { margin: 0; color: var(--muted); font-size: 15px; }
+.wcard .foot { margin-top: auto; padding-top: 4px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.wcard:hover .read span { transform: translateX(4px); }
+.docchips { display: flex; flex-wrap: wrap; gap: 6px; }
+.docchips span { font-family: var(--mono); font-size: 11.5px; padding: 5px 9px; border-radius: 8px; background: var(--lane-b); border: 1px solid var(--line); color: var(--ink-2); }
+.spark { display: block; width: 100%; height: 70px; }
+.spark .b { fill: var(--accent); opacity: .85; } .spark .l { stroke: var(--stamp); stroke-width: 2; fill: none; }
+.article-card .dek { font-family: var(--display); font-style: italic; font-size: 18px; color: var(--ink-2); }
+.fit { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px; }
+.fit .seg { margin-bottom: 20px; }
+.checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 36px; margin: 0; }
+.checks div { display: grid; grid-template-columns: 22px 110px minmax(0, 1fr); gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.checks dt { font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.checks dd { margin: 0; font-size: 15px; }
+.tick { color: var(--stamp); font-weight: 700; }
+.stages { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.stages li { border-top: 2px solid var(--accent); padding-top: 14px; min-width: 0; }
+.stages h3 { font-size: 22px; margin: 6px 0 8px; }
+.stages p { margin: 0 0 10px; font-size: 15px; color: var(--muted); }
+.stages q { display: block; font-family: var(--display); font-style: italic; font-size: 17px; color: var(--ink); quotes: "\201C" "\201D"; }
+
+.chain { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; position: relative; margin: 0; padding: 0; list-style: none; }
+.chain::before { content: ""; position: absolute; top: 27px; left: 10%; right: 10%; height: 2px; background: repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 14px); }
+.stop { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; background: none; border: 0; cursor: pointer; font: inherit; color: var(--ink); padding: 0 6px 14px; width: 100%; }
+.stop .dot { width: 56px; height: 56px; border-radius: 50%; background: var(--surface); border: 1.5px solid var(--line); display: grid; place-items: center; font-family: var(--mono); font-size: 11.5px; color: var(--muted); position: relative; z-index: 1; transition: all .2s ease; }
+.stop b { font-size: 15px; font-weight: 600; line-height: 1.3; } .stop small { color: var(--muted); font-size: 13px; display: block; }
+.stop:hover .dot { border-color: var(--accent); color: var(--accent); }
+.stop[aria-selected="true"] .dot { background: var(--ink); border-color: var(--ink); color: var(--bg); transform: scale(1.06); }
+.stop-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px 24px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px 24px; align-items: center; }
+.stop-panel h3 { font-size: 24px; margin: 0 0 6px; }
+.stop-panel p { margin: 0; color: var(--ink-2); max-width: 64ch; }
+
+.timeline { list-style: none; margin: 0; padding: 0; }
+.timeline li { display: grid; grid-template-columns: 130px minmax(0, 1fr) auto; gap: 20px; padding-block: 18px; border-top: 1px solid var(--line); align-items: baseline; }
+.timeline li:last-child { border-bottom: 1px solid var(--line); }
+.when { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.timeline h3 { font-family: var(--body); font-size: 17px; font-weight: 600; margin: 0; letter-spacing: 0; }
+.timeline h3 span { color: var(--muted); font-weight: 400; }
+.timeline p { margin: 3px 0 0; font-size: 15px; color: var(--muted); max-width: 68ch; }
+.where { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+.creds { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 30px; }
+.creds div { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+.creds b { display: block; font-size: 15px; } .creds span { font-size: 13px; color: var(--muted); }
+
+.contact { background: var(--ink); color: var(--bg); border-radius: 26px; padding: 40px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: center; }
+.contact img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 3px solid color-mix(in srgb, var(--bg) 25%, transparent); }
+.contact h2 { font-size: clamp(30px, 4vw, 42px); margin: 0 0 8px; }
+.contact p { margin: 0; color: color-mix(in srgb, var(--bg) 75%, transparent); }
+.contact .row { display: flex; flex-direction: column; gap: 10px; align-items: stretch; min-width: 240px; }
+.mail { font-family: var(--mono); font-size: 14px; background: color-mix(in srgb, var(--bg) 10%, transparent); padding: 11px 14px; border-radius: 10px; user-select: all; word-break: break-all; text-align: center; }
+.contact .btn { justify-content: center; background: var(--bg); color: var(--ink); border-color: transparent; }
+.contact .btn.ghost { background: transparent; color: var(--bg); border-color: color-mix(in srgb, var(--bg) 35%, transparent); }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; gap: 36px; padding-top: 36px; }
+  .portrait { order: -1; justify-self: start; max-width: 560px; }
+  .portrait .chip { display: none; }
+  .stages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .creds { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .contact { grid-template-columns: 1fr; }
+  .contact .row { min-width: 0; }
+}
+@media (max-width: 680px) {
+  .cases, .checks, .stages, .tiles2 { grid-template-columns: 1fr; }
+  .portrait img { aspect-ratio: 3 / 2; border-radius: 18px; }
+  .proof div { padding: 12px 10px 0 0; }
+  .proof div + div { padding-left: 10px; }
+  .proof b { font-size: 22px; }
+  .proof span { font-size: 12px; }
+  .checks div { grid-template-columns: 22px minmax(0, 1fr); }
+  .checks dd { grid-column: 2; }
+  .chain { grid-template-columns: 1fr; gap: 4px; }
+  .chain::before { top: 20px; bottom: 20px; left: 27px; right: auto; width: 2px; height: auto; background: repeating-linear-gradient(180deg, var(--line) 0 8px, transparent 8px 14px); }
+  .stop { flex-direction: row; text-align: left; padding: 4px 0; gap: 14px; }
+  .stop-panel { grid-template-columns: 1fr; }
+  .timeline li { grid-template-columns: 1fr; gap: 2px; }
+  .contact { padding: 28px 22px; }
+  section.block { padding-block: 44px; }
+}
+</style>
+<script>
+(function () {
+  var root = document.documentElement;
+  try { var t = localStorage.getItem('ab-theme'); if (t === 'dark' || t === 'light') root.setAttribute('data-theme', t); } catch (e) {}
+  function isDark() { var t = root.getAttribute('data-theme'); if (t) return t === 'dark'; return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
+  function paint() { var b = document.getElementById('theme-btn'); if (b) { b.textContent = isDark() ? '☀' : '☾'; b.setAttribute('aria-label', isDark() ? 'Switch to light theme' : 'Switch to dark theme'); } }
+  document.addEventListener('DOMContentLoaded', function () {
+    paint();
+    var b = document.getElementById('theme-btn');
+    if (b) b.addEventListener('click', function () { var n = isDark() ? 'light' : 'dark'; root.setAttribute('data-theme', n); try { localStorage.setItem('ab-theme', n); } catch (e) {} paint(); });
+    document.querySelectorAll('[role="tablist"]:not([data-shared])').forEach(function (list) {
+      var tabs = list.querySelectorAll('[role="tab"]');
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          tabs.forEach(function (t) { var on = t === tab; t.setAttribute('aria-selected', on ? 'true' : 'false'); var p = document.getElementById(t.getAttribute('aria-controls')); if (p) p.hidden = !on; });
+        });
+      });
+    });
+  });
+})();
+</script>
+</head>
+<body>
+<nav class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">Aditya Bankar</a>
+    <div class="navlinks">
+      <a href="#work">Work</a>
+      <a class="hide-sm" href="#samples">Samples</a>
+      <a class="hide-sm" href="#writing">Writing</a>
+      <a class="hide-sm" href="#experience">Experience</a>
+      <a class="hide-sm" href="#contact">Contact</a>
+      <a class="cv" href="Aditya-Bankar-CV.pdf" target="_blank" rel="noopener">CV</a>
+      <button class="theme-btn" id="theme-btn" type="button" aria-label="Switch theme">☾</button>
+    </div>
+  </div>
+</nav>
+<main class="wrap">
+  <header class="hero">
+    <div>
+      <div class="mini"><img src="aditya-avatar.jpg" alt="Aditya Bankar" width="56" height="56"><span><b>Aditya Bankar</b>Senior BA / Product Owner</span></div>
+      <div class="avail"><span class="live"><i></i>Available now</span><span>Pune, India · Open to UAE & GCC</span></div>
+      <h1>Senior Business Analyst <em>&amp;</em> Product Owner for FMCG distribution</h1>
+      <p class="lede">I turn distributor, order-to-cash and claims processes into systems that work for brands selling through thousands of outlets. 7+ years across India, the UK and South-East Asia.</p>
+      <div class="cta">
+        <a class="btn primary" href="#work">View case studies</a>
+        <a class="btn" href="Aditya-Bankar-CV.pdf" target="_blank" rel="noopener">Download CV</a>
+        <a class="btn" href="https://www.linkedin.com/in/adityabankar" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="proof">
+        <div><b>~30→10</b><span>days to settle a distributor claim</span></div>
+        <div><b>50,000+</b><span>outlets on one DMS rollout</span></div>
+        <div><b>9 yrs</b><span>in IT, 7+ in business analysis</span></div>
+      </div>
+    </div>
+    <figure class="portrait" style="margin:0">
+      <img src="aditya.jpg" alt="Portrait of Aditya Bankar" width="1200" height="900">
+      <div class="chip b"><span class="code">Education</span><b>MSc Business Analytics</b>University of Surrey, UK</div>
+      <div class="chip a"><span class="code">Currently</span><b>Freelance FMCG &amp; DMS consulting</b>Open to full-time roles</div>
+    </figure>
+  </header>
+
+  <section class="block" id="work">
+    <div class="sec-head"><div><span class="code">Selected work</span><h2>Case studies</h2></div>
+      <p>Four deep dives across FMCG distribution, dealer networks and UK retail, each with a process diagram and a work sample. Client details are anonymised.</p></div>
+    <div class="cases">
+      <a class="case" href="claims-case-study.html">
+      <div class="thumb" aria-hidden="true"><svg class="dg" viewBox="0 0 720 726" width="720" height="726" role="img" aria-label="Claims process after: automated, review by exception" xmlns="http://www.w3.org/2000/svg"><title>Claims process after: automated, review by exception</title><defs><marker id="th0-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrow"/></marker></defs><rect x="0" y="0" width="180" height="726" class="dg-lane-a"/><rect x="0" y="0" width="180" height="40" class="dg-head"/><text x="90" y="24.5" text-anchor="middle" class="dg-head-t">Distributor</text><rect x="180" y="0" width="180" height="726" class="dg-lane-b"/><rect x="180" y="0" width="180" height="40" class="dg-head"/><text x="270" y="24.5" text-anchor="middle" class="dg-head-t">DMS</text><line x1="180" y1="0" x2="180" y2="726" class="dg-sep"/><rect x="360" y="0" width="180" height="726" class="dg-lane-a"/><rect x="360" y="0" width="180" height="40" class="dg-head"/><text x="450" y="24.5" text-anchor="middle" class="dg-head-t">Reviewer</text><line x1="360" y1="0" x2="360" y2="726" class="dg-sep"/><rect x="540" y="0" width="180" height="726" class="dg-lane-b"/><rect x="540" y="0" width="180" height="40" class="dg-head"/><text x="630" y="24.5" text-anchor="middle" class="dg-head-t">SAP</text><line x1="540" y1="0" x2="540" y2="726" class="dg-sep"/><path d="M255,88 H90 V148" class="dg-edge" marker-end="url(#th0-arr)"/><path d="M162,172 H270 V232" class="dg-edge" marker-end="url(#th0-arr)"/><path d="M270,280 V316" class="dg-edge" marker-end="url(#th0-arr)"/><path d="M270,364 V402" class="dg-edge" marker-end="url(#th0-arr)"/><path d="M270,446 V508 H378" class="dg-edge" marker-end="url(#th0-arr)"/><text x="278" y="460" text-anchor="start" class="dg-elabel">Yes</text><path d="M292,424 H630 V568" class="dg-edge" marker-end="url(#th0-arr)"/><text x="300" y="417" text-anchor="start" class="dg-elabel">No</text><path d="M522,508 H630 V568" class="dg-edge" marker-end="url(#th0-arr)"/><path d="M630,616 V661" class="dg-edge" marker-end="url(#th0-arr)"/><circle cx="270" cy="88" r="15" class="dg-start"/><text x="294" y="85" class="dg-t sm">Promotion</text><text x="294" y="99" class="dg-t sm">set up once</text><circle cx="282" cy="74" r="10" class="dg-badge good"/><text x="282" y="78" text-anchor="middle" class="dg-badge-t">1</text><rect x="18" y="148" width="144" height="48" rx="9" class="dg-task good"/><text x="90" y="168.5" text-anchor="middle" class="dg-t">Invoice</text><text x="90" y="183.5" text-anchor="middle" class="dg-t">the outlet</text><circle cx="156" cy="150" r="10" class="dg-badge good"/><text x="156" y="154" text-anchor="middle" class="dg-badge-t">2</text><rect x="198" y="232" width="144" height="48" rx="9" class="dg-task good"/><text x="270" y="252.5" text-anchor="middle" class="dg-t">Generate claim</text><text x="270" y="267.5" text-anchor="middle" class="dg-t">from invoices</text><rect x="198" y="316" width="144" height="48" rx="9" class="dg-task good"/><text x="270" y="336.5" text-anchor="middle" class="dg-t">Validate against</text><text x="270" y="351.5" text-anchor="middle" class="dg-t">promotion rules</text><circle cx="336" cy="318" r="10" class="dg-badge good"/><text x="336" y="322" text-anchor="middle" class="dg-badge-t">3</text><path d="M270,402 L292,424 L270,446 L248,424 z" class="dg-gw"/><text x="270" y="429" text-anchor="middle" class="dg-gw-x">?</text><text x="242" y="406" text-anchor="end" class="dg-t sm">Exception?</text><rect x="378" y="484" width="144" height="48" rx="9" class="dg-task"/><text x="450" y="504.5" text-anchor="middle" class="dg-t">Review the</text><text x="450" y="519.5" text-anchor="middle" class="dg-t">exception</text><circle cx="516" cy="486" r="10" class="dg-badge good"/><text x="516" y="490" text-anchor="middle" class="dg-badge-t">4</text><rect x="558" y="568" width="144" height="48" rx="9" class="dg-task"/><text x="630" y="588.5" text-anchor="middle" class="dg-t">Create credit</text><text x="630" y="603.5" text-anchor="middle" class="dg-t">note</text><circle cx="630" cy="676" r="15" class="dg-end good"/><text x="654" y="673" class="dg-t sm strong">Paid in</text><text x="654" y="687" class="dg-t sm strong">~10 days</text></svg><span class="lbl">Process diagram inside</span></div>
+      <div class="case-body">
+        <div class="case-top"><span class="code">CS-01 · Claims</span><span class="stamp">Settled</span></div>
+        <div class="big">~30 → ~10 days<small>claim settlement</small></div>
+        <h3>Cutting distributor claim settlement from ~30 days to ~10</h3>
+        <p>Standardising promotion set-up and generating claims from invoice data, so distributors get reimbursed in about a third of the time.</p>
+        <div class="foot"><span>Global FMCG · Cambodia &amp; Laos · 3 min read</span><span class="read">Read case study <span aria-hidden="true">→</span></span></div>
+      </div>
+    </a>
+      <a class="case" href="o2c-case-study.html">
+      <div class="thumb" aria-hidden="true"><svg class="dg" viewBox="0 0 720 894" width="720" height="894" role="img" aria-label="Order-to-cash flow across salesman, distributor, DMS and SAP" xmlns="http://www.w3.org/2000/svg"><title>Order-to-cash flow across salesman, distributor, DMS and SAP</title><defs><marker id="th1-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrow"/></marker></defs><rect x="0" y="0" width="180" height="894" class="dg-lane-a"/><rect x="0" y="0" width="180" height="40" class="dg-head"/><text x="90" y="24.5" text-anchor="middle" class="dg-head-t">Salesman</text><rect x="180" y="0" width="180" height="894" class="dg-lane-b"/><rect x="180" y="0" width="180" height="40" class="dg-head"/><text x="270" y="24.5" text-anchor="middle" class="dg-head-t">Distributor</text><line x1="180" y1="0" x2="180" y2="894" class="dg-sep"/><rect x="360" y="0" width="180" height="894" class="dg-lane-a"/><rect x="360" y="0" width="180" height="40" class="dg-head"/><text x="450" y="24.5" text-anchor="middle" class="dg-head-t">DMS</text><line x1="360" y1="0" x2="360" y2="894" class="dg-sep"/><rect x="540" y="0" width="180" height="894" class="dg-lane-b"/><rect x="540" y="0" width="180" height="40" class="dg-head"/><text x="630" y="24.5" text-anchor="middle" class="dg-head-t">Brand · SAP</text><line x1="540" y1="0" x2="540" y2="894" class="dg-sep"/><path d="M90,103 V148" class="dg-edge" marker-end="url(#th1-arr)"/><path d="M162,172 H450 V232" class="dg-edge" marker-end="url(#th1-arr)"/><path d="M378,256 H270 V316" class="dg-edge" marker-end="url(#th1-arr)"/><path d="M342,340 H450 V400" class="dg-edge" marker-end="url(#th1-arr)"/><path d="M450,448 V486" class="dg-edge" marker-end="url(#th1-arr)"/><path d="M450,530 V592 H342" class="dg-edge" marker-end="url(#th1-arr)"/><text x="458" y="544" text-anchor="start" class="dg-elabel">Yes</text><path d="M472,508 H630 V736" class="dg-edge" marker-end="url(#th1-arr)"/><text x="480" y="501" text-anchor="start" class="dg-elabel">No</text><path d="M270,616 V676 H378" class="dg-edge" marker-end="url(#th1-arr)"/><path d="M522,676 H630 V736" class="dg-edge" marker-end="url(#th1-arr)"/><path d="M630,784 V829" class="dg-edge" marker-end="url(#th1-arr)"/><circle cx="90" cy="88" r="15" class="dg-start"/><text x="114" y="85" class="dg-t sm">Outlet visit</text><text x="114" y="99" class="dg-t sm">on beat plan</text><rect x="18" y="148" width="144" height="48" rx="9" class="dg-task"/><text x="90" y="168.5" text-anchor="middle" class="dg-t">Take order</text><text x="90" y="183.5" text-anchor="middle" class="dg-t">on the app</text><rect x="378" y="232" width="144" height="48" rx="9" class="dg-task good"/><text x="450" y="252.5" text-anchor="middle" class="dg-t">Apply price, tax</text><text x="450" y="267.5" text-anchor="middle" class="dg-t">and promotions</text><circle cx="516" cy="234" r="10" class="dg-badge good"/><text x="516" y="238" text-anchor="middle" class="dg-badge-t">1</text><rect x="198" y="316" width="144" height="48" rx="9" class="dg-task"/><text x="270" y="336.5" text-anchor="middle" class="dg-t">Confirm</text><text x="270" y="351.5" text-anchor="middle" class="dg-t">and deliver</text><rect x="378" y="400" width="144" height="48" rx="9" class="dg-task good"/><text x="450" y="420.5" text-anchor="middle" class="dg-t">Invoice with local</text><text x="450" y="435.5" text-anchor="middle" class="dg-t">tax and numbering</text><circle cx="516" cy="402" r="10" class="dg-badge good"/><text x="516" y="406" text-anchor="middle" class="dg-badge-t">2</text><path d="M450,486 L472,508 L450,530 L428,508 z" class="dg-gw"/><text x="450" y="513" text-anchor="middle" class="dg-gw-x">?</text><text x="422" y="490" text-anchor="end" class="dg-t sm">Returned?</text><rect x="198" y="568" width="144" height="48" rx="9" class="dg-task"/><text x="270" y="588.5" text-anchor="middle" class="dg-t">Record return</text><text x="270" y="603.5" text-anchor="middle" class="dg-t">with a reason</text><rect x="378" y="652" width="144" height="48" rx="9" class="dg-task good"/><text x="450" y="672.5" text-anchor="middle" class="dg-t">Credit note and</text><text x="450" y="687.5" text-anchor="middle" class="dg-t">promo reversal</text><circle cx="516" cy="654" r="10" class="dg-badge good"/><text x="516" y="658" text-anchor="middle" class="dg-badge-t">3</text><rect x="558" y="736" width="144" height="48" rx="9" class="dg-task"/><text x="630" y="756.5" text-anchor="middle" class="dg-t">Share sales, stock</text><text x="630" y="771.5" text-anchor="middle" class="dg-t">and credit notes</text><circle cx="630" cy="844" r="15" class="dg-end good"/><text x="654" y="841" class="dg-t sm strong">Real-time</text><text x="654" y="855" class="dg-t sm strong">visibility</text></svg><span class="lbl">Process diagram inside</span></div>
+      <div class="case-body">
+        <div class="case-top"><span class="code">CS-02 · Order-to-cash</span><span class="stamp">Live in 2 markets</span></div>
+        <div class="big blue">2 markets<small>one core flow</small></div>
+        <h3>One order-to-cash flow for two markets and 50,000+ outlets</h3>
+        <p>Designing a single order-to-invoice-to-return flow for a new DMS in Cambodia and Laos, with each country's tax, numbering and reporting rules built in.</p>
+        <div class="foot"><span>Global FMCG · Cambodia &amp; Laos · 3 min read</span><span class="read">Read case study <span aria-hidden="true">→</span></span></div>
+      </div>
+    </a>
+      <a class="case" href="stock-accuracy-case-study.html">
+      <div class="thumb" aria-hidden="true"><svg class="dg" viewBox="0 0 720 558" width="720" height="558" role="img" aria-label="Stock accuracy after: real-time sync and exceptions only" xmlns="http://www.w3.org/2000/svg"><title>Stock accuracy after: real-time sync and exceptions only</title><defs><marker id="th2-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrow"/></marker></defs><rect x="0" y="0" width="180" height="558" class="dg-lane-a"/><rect x="0" y="0" width="180" height="40" class="dg-head"/><text x="90" y="24.5" text-anchor="middle" class="dg-head-t">Store / warehouse</text><rect x="180" y="0" width="180" height="558" class="dg-lane-b"/><rect x="180" y="0" width="180" height="40" class="dg-head"/><text x="270" y="24.5" text-anchor="middle" class="dg-head-t">WES</text><line x1="180" y1="0" x2="180" y2="558" class="dg-sep"/><rect x="360" y="0" width="180" height="558" class="dg-lane-a"/><rect x="360" y="0" width="180" height="40" class="dg-head"/><text x="450" y="24.5" text-anchor="middle" class="dg-head-t">SAP</text><line x1="360" y1="0" x2="360" y2="558" class="dg-sep"/><rect x="540" y="0" width="180" height="558" class="dg-lane-b"/><rect x="540" y="0" width="180" height="40" class="dg-head"/><text x="630" y="24.5" text-anchor="middle" class="dg-head-t">Supply chain team</text><line x1="540" y1="0" x2="540" y2="558" class="dg-sep"/><path d="M90,103 V172 H198" class="dg-edge" marker-end="url(#th2-arr)"/><path d="M342,172 H450 V232" class="dg-edge" marker-end="url(#th2-arr)"/><path d="M450,280 V318" class="dg-edge" marker-end="url(#th2-arr)"/><path d="M472,340 H630 V400" class="dg-edge" marker-end="url(#th2-arr)"/><text x="480" y="333" text-anchor="start" class="dg-elabel">Yes</text><path d="M450,362 V493" class="dg-edge" marker-end="url(#th2-arr)"/><text x="458" y="376" text-anchor="start" class="dg-elabel">No</text><path d="M558,424 H450 V493" class="dg-edge" marker-end="url(#th2-arr)"/><circle cx="90" cy="88" r="15" class="dg-start"/><text x="114" y="85" class="dg-t sm">Stock</text><text x="114" y="99" class="dg-t sm">moves</text><rect x="198" y="148" width="144" height="48" rx="9" class="dg-task"/><text x="270" y="168.5" text-anchor="middle" class="dg-t">Record movement</text><text x="270" y="183.5" text-anchor="middle" class="dg-t">in WES</text><rect x="378" y="232" width="144" height="48" rx="9" class="dg-task good"/><text x="450" y="252.5" text-anchor="middle" class="dg-t">Sync to SAP</text><text x="450" y="267.5" text-anchor="middle" class="dg-t">in real time</text><circle cx="516" cy="234" r="10" class="dg-badge good"/><text x="516" y="238" text-anchor="middle" class="dg-badge-t">1</text><path d="M450,318 L472,340 L450,362 L428,340 z" class="dg-gw"/><text x="450" y="345" text-anchor="middle" class="dg-gw-x">?</text><text x="422" y="322" text-anchor="end" class="dg-t sm">Mismatch?</text><rect x="558" y="400" width="144" height="48" rx="9" class="dg-task good"/><text x="630" y="420.5" text-anchor="middle" class="dg-t">Investigate</text><text x="630" y="435.5" text-anchor="middle" class="dg-t">the exception</text><circle cx="696" cy="402" r="10" class="dg-badge good"/><text x="696" y="406" text-anchor="middle" class="dg-badge-t">2</text><circle cx="450" cy="508" r="15" class="dg-end good"/><text x="474" y="505" class="dg-t sm strong">Stock</text><text x="474" y="519" class="dg-t sm strong">accurate</text></svg><span class="lbl">Process diagram inside</span></div>
+      <div class="case-body">
+        <div class="case-top"><span class="code">CS-03 · Stock accuracy</span><span class="stamp">UK retail</span></div>
+        <div class="big">~30%<small>less manual reconciliation</small></div>
+        <h3>Keeping warehouse stock and SAP in step</h3>
+        <p>Requirements for a Warehouse Execution System redesign with real-time SAP sync, cutting manual stock reconciliation by about 30%.</p>
+        <div class="foot"><span>Sainsbury's · UK · 2023–25 · 3 min read</span><span class="read">Read case study <span aria-hidden="true">→</span></span></div>
+      </div>
+    </a>
+      <a class="case" href="dealer-management-case-study.html">
+      <div class="thumb" aria-hidden="true"><svg class="dg" viewBox="0 0 720 642" width="720" height="642" role="img" aria-label="Dealer order flow from order to reporting" xmlns="http://www.w3.org/2000/svg"><title>Dealer order flow from order to reporting</title><defs><marker id="th3-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="dg-arrow"/></marker></defs><rect x="0" y="0" width="180" height="642" class="dg-lane-a"/><rect x="0" y="0" width="180" height="40" class="dg-head"/><text x="90" y="24.5" text-anchor="middle" class="dg-head-t">Dealer</text><rect x="180" y="0" width="180" height="642" class="dg-lane-b"/><rect x="180" y="0" width="180" height="40" class="dg-head"/><text x="270" y="24.5" text-anchor="middle" class="dg-head-t">DMS</text><line x1="180" y1="0" x2="180" y2="642" class="dg-sep"/><rect x="360" y="0" width="180" height="642" class="dg-lane-a"/><rect x="360" y="0" width="180" height="40" class="dg-head"/><text x="450" y="24.5" text-anchor="middle" class="dg-head-t">Sales team</text><line x1="360" y1="0" x2="360" y2="642" class="dg-sep"/><rect x="540" y="0" width="180" height="642" class="dg-lane-b"/><rect x="540" y="0" width="180" height="40" class="dg-head"/><text x="630" y="24.5" text-anchor="middle" class="dg-head-t">Reporting</text><line x1="540" y1="0" x2="540" y2="642" class="dg-sep"/><path d="M90,103 V148" class="dg-edge" marker-end="url(#th3-arr)"/><path d="M162,172 H270 V232" class="dg-edge" marker-end="url(#th3-arr)"/><path d="M342,256 H450 V316" class="dg-edge" marker-end="url(#th3-arr)"/><path d="M378,340 H270 V400" class="dg-edge" marker-end="url(#th3-arr)"/><path d="M342,424 H630 V484" class="dg-edge" marker-end="url(#th3-arr)"/><path d="M630,532 V577" class="dg-edge" marker-end="url(#th3-arr)"/><circle cx="90" cy="88" r="15" class="dg-start"/><text x="114" y="85" class="dg-t sm">Dealer</text><text x="114" y="99" class="dg-t sm">needs stock</text><rect x="18" y="148" width="144" height="48" rx="9" class="dg-task"/><text x="90" y="168.5" text-anchor="middle" class="dg-t">Place order</text><text x="90" y="183.5" text-anchor="middle" class="dg-t">in the DMS</text><rect x="198" y="232" width="144" height="48" rx="9" class="dg-task"/><text x="270" y="252.5" text-anchor="middle" class="dg-t">Check price list</text><text x="270" y="267.5" text-anchor="middle" class="dg-t">and stock</text><rect x="378" y="316" width="144" height="48" rx="9" class="dg-task"/><text x="450" y="336.5" text-anchor="middle" class="dg-t">Approve and</text><text x="450" y="351.5" text-anchor="middle" class="dg-t">dispatch</text><rect x="198" y="400" width="144" height="48" rx="9" class="dg-task good"/><text x="270" y="420.5" text-anchor="middle" class="dg-t">Bill the dealer,</text><text x="270" y="435.5" text-anchor="middle" class="dg-t">update stock</text><circle cx="336" cy="402" r="10" class="dg-badge good"/><text x="336" y="406" text-anchor="middle" class="dg-badge-t">1</text><rect x="558" y="484" width="144" height="48" rx="9" class="dg-task good"/><text x="630" y="504.5" text-anchor="middle" class="dg-t">Sales and stock</text><text x="630" y="519.5" text-anchor="middle" class="dg-t">reports</text><circle cx="696" cy="486" r="10" class="dg-badge good"/><text x="696" y="490" text-anchor="middle" class="dg-badge-t">2</text><circle cx="630" cy="592" r="15" class="dg-end good"/><text x="654" y="589" class="dg-t sm strong">Plan next</text><text x="654" y="603" class="dg-t sm strong">order</text></svg><span class="lbl">Process diagram inside</span></div>
+      <div class="case-body">
+        <div class="case-top"><span class="code">CS-04 · Dealer management</span><span class="stamp">500+ dealers</span></div>
+        <div class="big blue">~50%<small>faster reporting</small></div>
+        <h3>One system for 500+ dealers: orders, billing and stock</h3>
+        <p>An integrated Dealer Management System that brought orders, billing, dealer stock and reporting for a country-wide network into one place.</p>
+        <div class="foot"><span>The Opal Labs · India · 2018–21 · 3 min read</span><span class="read">Read case study <span aria-hidden="true">→</span></span></div>
+      </div>
+    </a>
+    </div>
+  </section>
+
+  <section class="block" id="samples">
+    <div class="sec-head"><div><span class="code">Work samples</span><h2>How I document and report</h2></div>
+      <p>Hiring managers rarely get to see how a BA actually writes. These samples show it, built for this portfolio with no client material.</p></div>
+    <div class="tiles2">
+      <a class="wcard" href="samples.html">
+        <div class="case-top"><span class="code">WS-01 · Documents</span><span class="stamp">5 documents</span></div>
+        <h3>One feature, documented end to end</h3>
+        <p>A requirements extract, user stories, a traceability matrix, UAT test cases and a change request, all for automated promotion claims.</p>
+        <div class="docchips"><span>BRD</span><span>User stories</span><span>RTM</span><span>UAT</span><span>Change request</span></div>
+        <div class="foot"><span>Illustrative · 5 min read</span><span class="read">Open the pack <span aria-hidden="true">→</span></span></div>
+      </a>
+      <a class="wcard" href="dashboard.html">
+        <div class="case-top"><span class="code">WS-02 · Dashboard</span><span class="stamp">Interactive</span></div>
+        <h3>Distributor performance dashboard</h3>
+        <p>A monthly view of sales against target, fill rate, claims ageing and promotion return, with region and month filters. Built on synthetic data.</p>
+        <svg class="spark" viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true"><rect class="b" x="4" y="38" width="18" height="32" rx="3"/><rect class="b" x="30" y="30" width="18" height="40" rx="3"/><rect class="b" x="56" y="34" width="18" height="36" rx="3"/><rect class="b" x="82" y="22" width="18" height="48" rx="3"/><rect class="b" x="108" y="26" width="18" height="44" rx="3"/><rect class="b" x="134" y="14" width="18" height="56" rx="3"/><path class="l" d="M170,48 L196,40 L222,44 L248,30 L274,24 L296,16"/></svg>
+        <div class="foot"><span>Synthetic data · try the filters</span><span class="read">Open the dashboard <span aria-hidden="true">→</span></span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="block" id="writing">
+    <div class="sec-head"><div><span class="code">Writing</span><h2>Notes from the field</h2></div>
+      <p>Short pieces on what I've learned delivering distribution systems.</p></div>
+    <div class="tiles2">
+      <a class="wcard article-card" href="why-claims-take-30-days.html">
+        <span class="code">Trade promotions</span>
+        <h3>Why distributor claims take 30 days, and how to get them to 10</h3>
+        <p class="dek">Slow claim settlement is rarely an approval problem. It starts the day the promotion is set up.</p>
+        <div class="foot"><span>4 min read</span><span class="read">Read <span aria-hidden="true">→</span></span></div>
+      </a>
+      <a class="wcard article-card" href="two-markets-one-system.html">
+        <span class="code">Fit-gap analysis</span>
+        <h3>Two markets, one system: five lessons from a fit-gap</h3>
+        <p class="dek">What I learned designing one order-to-cash flow for two countries with different rules.</p>
+        <div class="foot"><span>4 min read</span><span class="read">Read <span aria-hidden="true">→</span></span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="block" id="fit">
+    <div class="sec-head"><div><span class="code">Quick fit check</span><h2>Read my profile your way</h2></div>
+      <p>Recruiters usually check the essentials. Hiring managers want to know how I work. Pick your view.</p></div>
+    <div class="fit">
+      <div class="seg" role="tablist" aria-label="Choose a view">
+        <button type="button" role="tab" id="tab-rec" aria-selected="true" aria-controls="panel-rec">For recruiters</button>
+        <button type="button" role="tab" id="tab-hm" aria-selected="false" aria-controls="panel-hm">For hiring managers</button>
+      </div>
+      <div id="panel-rec" role="tabpanel" aria-labelledby="tab-rec">
+        <dl class="checks"><div><span class="tick" aria-hidden="true">✓</span><dt>Role</dt><dd>Senior Business Analyst, Product Owner</dd></div><div><span class="tick" aria-hidden="true">✓</span><dt>Experience</dt><dd>9 years in IT, 7+ in business analysis</dd></div><div><span class="tick" aria-hidden="true">✓</span><dt>Domain</dt><dd>FMCG distribution, DMS, order-to-cash, trade promotions and claims, retail supply chain</dd></div><div><span class="tick" aria-hidden="true">✓</span><dt>Systems</dt><dd>SAP (U2K2) integration, TPM, PEGA, WES, Jira, Confluence, Power BI, SQL</dd></div><div><span class="tick" aria-hidden="true">✓</span><dt>Methods</dt><dd>Agile, Scrum, Kanban, SAFe, Waterfall. PSM-I certified</dd></div><div><span class="tick" aria-hidden="true">✓</span><dt>Markets</dt><dd>India, United Kingdom, Cambodia, Laos</dd></div><div><span class="tick" aria-hidden="true">✓</span><dt>Education</dt><dd>MSc Business Analytics, University of Surrey (UK)</dd></div><div><span class="tick" aria-hidden="true">✓</span><dt>Availability</dt><dd>Immediate. Based in Pune, open to the UAE and GCC</dd></div></dl>
+      </div>
+      <div id="panel-hm" role="tabpanel" aria-labelledby="tab-hm" hidden>
+        <ol class="stages">
+          <li><span class="code">01 · Discover</span><h3>Understand the real process</h3><p>Workshops and walkthroughs with the people who do the work, then a gap analysis per market.</p><q>Fix the process before the screen.</q></li>
+          <li><span class="code">02 · Define</span><h3>Write it down precisely</h3><p>User stories, acceptance criteria, process flows, field mappings and a traceability matrix.</p><q>If it can't be tested, it isn't a requirement.</q></li>
+          <li><span class="code">03 · Deliver</span><h3>Keep the backlog honest</h3><p>MoSCoW priorities, sprint planning, change requests with impact assessment, and UAT.</p><q>Agree the core flow before the exceptions.</q></li>
+          <li><span class="code">04 · Stabilise</span><h3>Stay through go-live</h3><p>Hypercare, defect triage and tracking the KPIs the business signed up for.</p><q>Go-live is where measurement starts.</q></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="chain">
+    <div class="sec-head"><div><span class="code">Across the supply chain</span><h2>Where I've worked, stop by stop</h2></div>
+      <p>From the brand's ERP to the outlet shelf. Select a stop to see what I delivered there.</p></div>
+    <div class="chain" role="tablist" data-shared aria-label="Supply chain stops">
+      <button class="stop" type="button" role="tab" id="stop-erp" aria-selected="false" aria-controls="stop-panel"><span class="dot">ERP</span><span><b>Brand</b><small>SAP &amp; promotions</small></span></button>
+      <button class="stop" type="button" role="tab" id="stop-wh" aria-selected="false" aria-controls="stop-panel"><span class="dot">WES</span><span><b>Warehouse &amp; stores</b><small>Sainsbury's, UK</small></span></button>
+      <button class="stop" type="button" role="tab" id="stop-dms" aria-selected="true" aria-controls="stop-panel"><span class="dot">DMS</span><span><b>Distributor</b><small>Distributor &amp; dealer systems</small></span></button>
+      <button class="stop" type="button" role="tab" id="stop-app" aria-selected="false" aria-controls="stop-panel"><span class="dot">APP</span><span><b>Salesman</b><small>Mobility app</small></span></button>
+      <button class="stop" type="button" role="tab" id="stop-out" aria-selected="false" aria-controls="stop-panel"><span class="dot">OUT</span><span><b>Retail outlet</b><small>50,000+ shops</small></span></button>
+    </div>
+    <div class="stop-panel" id="stop-panel" role="tabpanel" aria-live="polite"></div>
+  </section>
+
+  <section class="block" id="experience">
+    <div class="sec-head"><div><span class="code">Career</span><h2>Experience</h2></div><p>Nine years, four countries, one thread: making distribution run on reliable systems.</p></div>
+    <ol class="timeline">
+      <li><span class="when">2026 – now</span><div><h3>Freelance Functional Consultant <span>· FMCG Distribution & DMS</span></h3><p>Functional consulting on distributor management, order-to-cash, promotions and claims.</p></div><span class="where">India</span></li>
+      <li><span class="when">2025 – 2026</span><div><h3>Specialist, Business Analysis <span>· LTIMindtree</span></h3><p>Functional delivery lead for a global FMCG multinational's DMS: 80+ distributors, 50,000+ outlets, 800+ salesmen.</p></div><span class="where">Cambodia · Laos</span></li>
+      <li><span class="when">2023 – 2025</span><div><h3>IT Business Analyst <span>· Sainsbury's</span></h3><p>Warehouse Execution System requirements with real-time SAP sync across retail supply chain and store operations.</p></div><span class="where">United Kingdom</span></li>
+      <li><span class="when">2022 – 2023</span><div><h3>MSc Business Analytics <span>· University of Surrey</span></h3><p>Postgraduate study in analytics and data-driven decision making.</p></div><span class="where">United Kingdom</span></li>
+      <li><span class="when">2021 – 2022</span><div><h3>Specialist Business Analyst <span>· Birlasoft</span></h3><p>MahaParwana licensing platform for 30,000 businesses and 13.6 million farmers. SKOCH Award 2022.</p></div><span class="where">India</span></li>
+      <li><span class="when">2018 – 2021</span><div><h3>Business Analyst <span>· The Opal Labs</span></h3><p>Integrated Dealer Management System for 500+ dealers across India.</p></div><span class="where">India</span></li>
+      <li><span class="when">2016 – 2018</span><div><h3>Quality Analyst <span>· RSE LegalDocs</span></h3><p>Functional and integration testing for registration portals.</p></div><span class="where">India</span></li>
+    </ol>
+    <div class="creds">
+      <div><b>MSc Business Analytics</b><span>University of Surrey, UK</span></div>
+      <div><b>SKOCH Award 2022</b><span>MahaParwana platform, Birlasoft</span></div>
+      <div><b>PSM-I</b><span>Professional Scrum Master, Scrum.org</span></div>
+      <div><b>Omnichannel Retail Strategy</b><span>Coursera, 2026</span></div>
+    </div>
+  </section>
+
+  <section class="block" id="contact" style="border-top:0">
+    <div class="contact">
+      <div>
+        <h2>Let's talk about your next rollout.</h2>
+        <p>Senior BA and Product Owner roles in FMCG, retail and supply chain, in India, the UAE or the GCC. I can start immediately.</p>
+      </div>
+      <div class="row">
+        <span class="mail" id="mail">bankar.aditya.266@gmail.com</span>
+        <button class="btn" type="button" id="copy-btn">Copy email</button>
+        <a class="btn ghost" href="https://www.linkedin.com/in/adityabankar" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site"><div class="wrap">
+  <span>© 2026 Aditya Keshavrao Bankar · Senior Business Analyst / Product Owner</span>
+  <span><a href="https://www.linkedin.com/in/adityabankar" target="_blank" rel="noopener">LinkedIn</a> · <a href="Aditya-Bankar-CV.pdf" target="_blank" rel="noopener">CV (PDF)</a></span>
+</div></footer>
+<script>
+(function () {
+  var ROUTE = [{"k":"erp","code":"ERP","name":"Brand","sub":"SAP & promotions","title":"Where the brand runs its business","text":"Integration requirements between SAP (U2K2), trade promotion management and the DMS, covering pricing, promotions, credit notes and legal reporting.","stamp":"SAP · TPM · PEGA"},{"k":"wh","code":"WES","name":"Warehouse & stores","sub":"Sainsbury's, UK","title":"Stock records that match the shelf","text":"At Sainsbury's I defined Warehouse Execution System requirements with real-time SAP sync, cutting manual stock reconciliation effort by about 30%.","stamp":"~30% less reconciliation"},{"k":"dms","code":"DMS","name":"Distributor","sub":"Distributor & dealer systems","title":"The heart of route-to-market","text":"Order-to-cash, claims and localisation for 80+ distributors across Cambodia and Laos, and an integrated Dealer Management System for 500+ dealers in India.","stamp":"80+ distributors · 500+ dealers"},{"k":"app","code":"APP","name":"Salesman","sub":"Mobility app","title":"Orders taken at the shelf","text":"Order capture, targets and master data requirements for 800+ salesmen, so prices and promotions are right before the order reaches the distributor.","stamp":"800+ salesmen"},{"k":"out","code":"OUT","name":"Retail outlet","sub":"50,000+ shops","title":"Where the promotion meets the shopper","text":"Promotions applied correctly at 50,000+ outlets, with distributor claims settled in about 10 days instead of 30.","stamp":"Claims in ~10 days"}];
+  var panel = document.getElementById('stop-panel');
+  function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+  function show(k) {
+    var r = ROUTE.filter(function (x) { return x.k === k; })[0];
+    document.querySelectorAll('.stop').forEach(function (b) { b.setAttribute('aria-selected', b.id === 'stop-' + k ? 'true' : 'false'); });
+    panel.innerHTML = '<div><span class="code">' + esc(r.code) + ' · ' + esc(r.name) + '</span><h3>' + esc(r.title) + '</h3><p>' + esc(r.text) + '</p></div><span class="stamp">' + esc(r.stamp) + '</span>';
+  }
+  document.querySelectorAll('.stop').forEach(function (b) { b.addEventListener('click', function () { show(b.id.replace('stop-', '')); }); });
+  show('dms');
+
+  var cb = document.getElementById('copy-btn');
+  cb.addEventListener('click', function () {
+    var el = document.getElementById('mail');
+    function done() { cb.textContent = 'Copied'; setTimeout(function () { cb.textContent = 'Copy email'; }, 1800); }
+    function fallback() { var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); cb.textContent = 'Selected, press copy'; }
+    try { navigator.clipboard.writeText(el.textContent).then(done, fallback); } catch (e) { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>
